@@ -4,8 +4,9 @@
 using namespace std;
 
 RedheadDuck::RedheadDuck()
-    : Duck(make_unique<FlyWithWings>(), make_unique<QuackBehavior>())
+    : Duck(make_unique<QuackBehavior>())
 {
+    SetFlyBehavior(FlyWithWings());
 }
 
 void RedheadDuck::Display() const

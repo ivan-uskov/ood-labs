@@ -4,8 +4,9 @@
 using namespace std;
 
 MallardDuck::MallardDuck()
-    : Duck(make_unique<FlyWithWings>(), make_unique<QuackBehavior>())
+    : Duck(make_unique<QuackBehavior>())
 {
+    SetFlyBehavior(FlyWithWings());
 }
 
 void MallardDuck::Display() const

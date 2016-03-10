@@ -24,7 +24,7 @@ void PlayWithDuck(Duck & duck)
 void main()
 {
     MallardDuck mallarDuck;
-    mallarDuck.SetDanceBehavior(DanceWaltz);
+    PlayWithDuck(mallarDuck);
     PlayWithDuck(mallarDuck);
 
     cout << endl;
@@ -48,6 +48,6 @@ void main()
 
     ModelDuck modelDuck;
     PlayWithDuck(modelDuck);
-    modelDuck.SetFlyBehavior(make_unique<FlyWithWings>());
+    modelDuck.SetFlyBehavior(FlyWithWings());
     PlayWithDuck(modelDuck);
 }

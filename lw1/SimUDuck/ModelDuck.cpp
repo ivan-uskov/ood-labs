@@ -4,7 +4,7 @@
 using namespace std;
 
 ModelDuck::ModelDuck()
-    : Duck(make_unique<FlyNoWay>(), make_unique<QuackBehavior>())
+    : Duck(make_unique<QuackBehavior>())
 {
 }
 
