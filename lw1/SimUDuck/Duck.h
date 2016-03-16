@@ -3,24 +3,27 @@
 #include "QuackStrategy.h"
 #include "DanceStrategy.h"
 
+typedef std::function<void()> QuackBehavior;
+typedef std::function<void()> DanceBehavior;
+typedef std::function<void()> FlyBehavior;
+
 class Duck
 {
 public:
-    Duck(std::unique_ptr<IQuackBehavior> && quackBehavior);
-
     void Quack() const;
     void Swim();
     void Fly();
-    virtual void Dance();
+    void Dance();
     virtual void Display() const = 0;
 
     void SetFlyBehavior(FlyBehavior flyBehavior);
     void SetDanceBehavior(DanceBehavior danceBehavior);
+    void SetQuackBehavior(QuackBehavior danceBehavior);
 
     virtual ~Duck() = default;
 
 private:
     FlyBehavior m_flyBehavior;
-    std::unique_ptr<IQuackBehavior> m_quackBehavior;
+    QuackBehavior m_quackBehavior;
     DanceBehavior m_danceBehavior;
 };

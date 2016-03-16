@@ -1,13 +1,14 @@
 #pragma once
-#include <functional>
 
-typedef std::function<void()> FlyBehavior;
-
-class FlyWithWings
+namespace FlyStrategy
 {
-public:
-    void operator () ();
+    class FlyWithWings
+    {
+    public:
+        void operator () ();
 
-private:
-    size_t m_flyCounter = 0;
-};
+    private:
+        size_t m_flyCounter = 0;
+    };
+
+}

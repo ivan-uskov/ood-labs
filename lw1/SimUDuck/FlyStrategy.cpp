@@ -3,7 +3,10 @@
 
 using namespace std;
 
-void FlyWithWings::operator () ()
+namespace FlyStrategy
 {
-    cout << "My fly Impl " << ++m_flyCounter << endl;
+    void FlyWithWings::operator () ()
+    {
+        cout << "My fly Impl " << ++m_flyCounter << endl;
+    }
 }

@@ -3,12 +3,15 @@
 
 using namespace std;
 
-void QuackBehavior::Quack()
+namespace  QuackStrategy
 {
-    cout << "Quack Quack!!!" << endl;
-}
+    void Quack()
+    {
+        cout << "Quack Quack!!!" << endl;
+    }
 
-void SqueakBehavior::Quack()
-{
-    cout << "Squeek!!!" << endl;
+    void Squeak()
+    {
+        cout << "Squeek!!!" << endl;
+    }
 }

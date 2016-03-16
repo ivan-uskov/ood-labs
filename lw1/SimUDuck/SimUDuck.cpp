@@ -30,7 +30,6 @@ void main()
     cout << endl;
 
     RedheadDuck redheadDuck;
-    redheadDuck.SetDanceBehavior(DanceMinuet);
     PlayWithDuck(redheadDuck);
     PlayWithDuck(redheadDuck);
 
@@ -48,6 +47,6 @@ void main()
 
     ModelDuck modelDuck;
     PlayWithDuck(modelDuck);
-    modelDuck.SetFlyBehavior(FlyWithWings());
+    modelDuck.SetFlyBehavior(FlyStrategy::FlyWithWings());
     PlayWithDuck(modelDuck);
 }

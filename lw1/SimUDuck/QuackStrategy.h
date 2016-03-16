@@ -1,22 +1,7 @@
 #pragma once
 
-struct IQuackBehavior
+namespace QuackStrategy
 {
-    virtual ~IQuackBehavior() = default;
-    virtual void Quack() = 0;
-};
-
-struct QuackBehavior : public IQuackBehavior
-{
-    void Quack() override;
-};
-
-struct SqueakBehavior : public IQuackBehavior
-{
-    void Quack() override;
-};
-
-struct MuteQuackBehavior : public IQuackBehavior
-{
-    void Quack() override {}
-};
+    void Quack();
+    void Squeak();
+}

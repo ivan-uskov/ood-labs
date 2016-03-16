@@ -3,12 +3,15 @@
 
 using namespace std;
 
-void DanceWaltz()
+namespace DanceStrategy
 {
-    cout << "I'm dancing waltz!!!" << endl;
-}
+    void Waltz()
+    {
+        cout << "I'm dancing waltz!!!" << endl;
+    }
 
-void DanceMinuet()
-{
-    cout << "I'm dancing minuet!!!" << endl;
+    void Minuet()
+    {
+        cout << "I'm dancing minuet!!!" << endl;
+    }
 }

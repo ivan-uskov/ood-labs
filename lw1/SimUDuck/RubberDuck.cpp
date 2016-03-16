@@ -4,8 +4,8 @@
 using namespace std;
 
 RubberDuck::RubberDuck()
-    : Duck(make_unique<QuackBehavior>())
 {
+    SetQuackBehavior(QuackStrategy::Quack);
 }
 
 void RubberDuck::Display() const

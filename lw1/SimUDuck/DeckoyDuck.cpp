@@ -3,11 +3,6 @@
 
 using namespace std;
 
-DeckoyDuck::DeckoyDuck()
-    : Duck(make_unique<MuteQuackBehavior>())
-{
-}
-
 void DeckoyDuck::Display() const
 {
     cout << "I'm deckoy duck" << endl;

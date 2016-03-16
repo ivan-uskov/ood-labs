@@ -3,15 +3,12 @@
 
 using namespace std;
 
-Duck::Duck(unique_ptr<IQuackBehavior> && quackBehavior)
-    : m_quackBehavior(move(quackBehavior))
-{
-    assert(m_quackBehavior);
-}
-
 void Duck::Quack() const
 {
-    m_quackBehavior->Quack();
+    if (m_quackBehavior)
+    {
+        m_quackBehavior();
+    }
 }
 
 void Duck::Swim()
@@ -43,4 +40,9 @@ void Duck::SetFlyBehavior(FlyBehavior flyBehavior)
 void Duck::SetDanceBehavior(DanceBehavior danceBehavior)
 {
     m_danceBehavior = danceBehavior;
+}
+
+void Duck::SetQuackBehavior(QuackBehavior danceBehavior)
+{
+    m_quackBehavior = danceBehavior;
 }

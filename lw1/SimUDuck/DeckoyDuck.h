@@ -4,6 +4,5 @@
 class DeckoyDuck : public Duck
 {
 public:
-    DeckoyDuck();
     void Display() const override;
 };

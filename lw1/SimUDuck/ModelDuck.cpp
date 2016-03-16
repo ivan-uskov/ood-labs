@@ -4,8 +4,8 @@
 using namespace std;
 
 ModelDuck::ModelDuck()
-    : Duck(make_unique<QuackBehavior>())
 {
+    SetQuackBehavior(QuackStrategy::Quack);
 }
 
 void ModelDuck::Display() const
