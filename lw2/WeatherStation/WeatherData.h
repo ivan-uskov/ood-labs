@@ -13,6 +13,8 @@ struct WeatherInfo
 class WeatherData : public Observable<WeatherInfo>
 {
 public:
+    typedef ObserverType Display;
+
     // Температура в градусах Цельсия
     double GetTemperature() const;
     // Относительная влажность (0...100)
