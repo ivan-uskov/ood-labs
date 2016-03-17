@@ -7,6 +7,7 @@
 #include <exception>
 #include <memory>
 #include <algorithm>
+#include <iterator>
 
 template <typename T>
 class IObserver
@@ -45,18 +46,15 @@ public:
     void NotifyObservers() override
     {
         T data = GetChangedData();
-        auto observer = m_observers.begin();
-        while (observer != m_observers.end())
+        auto observers = m_observers;
+        auto observer = observers.begin();
+
+        while (observer != observers.end())
         {
-            if (observer->expired())
+            auto current = (observer++)->lock();
+            if (current)
             {
-                auto observerToBeDeleted = observer++;
-                m_observers.erase(observerToBeDeleted);
-            }
-            else
-            {
-                observer->lock()->Update(data);
-                ++observer;
+                current->Update(data);
             }
         }
     }

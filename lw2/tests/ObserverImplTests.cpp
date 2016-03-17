@@ -7,7 +7,6 @@ struct FooObserver : IObserver<int>
 {
     void Update(int const& data) override
     {
-        
     }
 };
 
@@ -17,6 +16,21 @@ struct EmptySubject : Observable<int>
     {
         return 42;
     }
+};
+
+struct SelfRemoverObserver : IObserver<int>, std::enable_shared_from_this<SelfRemoverObserver>
+{
+    SelfRemoverObserver(EmptySubject & subject)
+        : m_subject(subject)
+    {
+    }
+
+    void Update(int const& data) override
+    {
+        m_subject.RemoveObserver(shared_from_this());
+    }
+private:
+    EmptySubject & m_subject;
 };
 
 BOOST_AUTO_TEST_SUITE(ObserverImplTests)
@@ -62,6 +76,16 @@ BOOST_AUTO_TEST_CASE(CheckRemoveEmptyObservers)
     subject.RegisterObserver(observer);
     observer.reset();
 
+    BOOST_CHECK_NO_THROW(subject.NotifyObservers());
+}
+
+BOOST_AUTO_TEST_CASE(CheckObserverRemoveSelfInUpdate)
+{
+    EmptySubject subject;
+
+    auto observer = make_shared<SelfRemoverObserver>(subject);
+
+    subject.RegisterObserver(observer);
     BOOST_CHECK_NO_THROW(subject.NotifyObservers());
 }
 

@@ -29,7 +29,7 @@ public:
         return m_minValue;
     }
 
-    T GetAvarage() const
+    T GetAvórage() const
     {
         return m_accValue / m_countAcc;
     }

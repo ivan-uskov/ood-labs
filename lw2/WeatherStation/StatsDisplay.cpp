@@ -27,6 +27,6 @@ void StatsDisplay::PrintParameterStatistics(ParameterStats const& stats, string 
 {
     cout << "Max " << parameterName << " " << stats.GetMax() << endl;
     cout << "Min " << parameterName << " " << stats.GetMin() << endl;
-    cout << "Average " << parameterName << " " << stats.GetAvarage() << endl;
+    cout << "Average " << parameterName << " " << stats.GetAvórage() << endl;
     cout << "----------------" << endl;
 }
