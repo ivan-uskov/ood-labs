@@ -3,14 +3,16 @@
 #include "Display.h"
 #include "StatsDisplay.h"
 
+using namespace std;
+
 int main()
 {
     WeatherData wd;
 
-    Display display;
+    auto display = make_shared<Display>();
     wd.RegisterObserver(display);
 
-    StatsDisplay statsDisplay;
+    auto statsDisplay = make_shared<StatsDisplay>();
     wd.RegisterObserver(statsDisplay);
 
     wd.SetMeasurements(3, 0.7, 760);
