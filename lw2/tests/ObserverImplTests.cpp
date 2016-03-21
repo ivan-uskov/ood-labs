@@ -33,6 +33,36 @@ private:
     EmptySubject & m_subject;
 };
 
+struct MultiplyingTwoObserver : IObserver<int>
+{
+    MultiplyingTwoObserver(int & value)
+        : m_value(value)
+    {
+    }
+
+    void Update(int const&) override
+    {
+        m_value *= 2;
+    }
+private:
+    int & m_value;
+};
+
+struct SumstructingOneObserver : IObserver<int>
+{
+    SumstructingOneObserver(int & value)
+        : m_value(value)
+    {
+    }
+
+    void Update(int const&) override
+    {
+        m_value -= 1;
+    }
+private:
+    int & m_value;
+};
+
 BOOST_AUTO_TEST_SUITE(ObserverImplTests)
 
 BOOST_AUTO_TEST_CASE(CheckRegisterObserver)
@@ -87,6 +117,19 @@ BOOST_AUTO_TEST_CASE(CheckObserverRemoveSelfInUpdate)
 
     subject.RegisterObserver(observer);
     BOOST_CHECK_NO_THROW(subject.NotifyObservers());
+}
+
+BOOST_AUTO_TEST_CASE(CheckObserversPriorityUpdate)
+{
+    int value = 0;
+    EmptySubject subject;
+    auto mulObserver = make_shared<MultiplyingTwoObserver>(value);
+    auto subObserver = make_shared<SumstructingOneObserver>(value);
+
+    subject.RegisterObserver(mulObserver, 1);
+    subject.RegisterObserver(subObserver, 2);
+    subject.NotifyObservers();
+    BOOST_CHECK_EQUAL(value, -2);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
