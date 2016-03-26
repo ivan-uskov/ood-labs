@@ -9,6 +9,12 @@
 #include <algorithm>
 #include <iterator>
 
+#include <boost/multi_index_container.hpp>
+#include <boost/multi_index/ordered_index.hpp>
+#include <boost/multi_index/indexed_by.hpp>
+#include <boost/multi_index/identity.hpp>
+#include <boost/multi_index/member.hpp>
+
 template <typename T>
 class IObserver
 {
@@ -88,15 +94,19 @@ private:
     {
         std::weak_ptr<ObserverType> ptr;
         unsigned priority;
-    };
 
-    struct ObserverInfoCompare
-    {
-        bool operator() (ObserverInfo const& lhs, ObserverInfo const& rhs) const
+        bool operator < (ObserverInfo const& rhs) const
         {
-            return lhs.ptr.lock().get() < rhs.ptr.lock().get();
+            return ptr.lock().get() < rhs.ptr.lock().get();
         }
     };
 
-    std::set<ObserverInfo, ObserverInfoCompare> m_observers;
+    std::set<ObserverInfo> m_observers;
+    /* typedef boost::multi_index_container<
+        ObserverInfo,
+        boost::multi_index::indexed_by<
+            boost::multi_index::hashed_unique<boost::multi_index::member<ObserverInfo, std::weak_ptr<ObserverType>, &ObserverInfo::ptr>>,
+            boost::multi_index::ordered_non_unique<ObserverInfo>
+        >
+    > ObserversContainer; */
 };

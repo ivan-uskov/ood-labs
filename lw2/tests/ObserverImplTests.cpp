@@ -48,9 +48,9 @@ private:
     int & m_value;
 };
 
-struct SumstructingOneObserver : IObserver<int>
+struct SubstructingOneObserver : IObserver<int>
 {
-    SumstructingOneObserver(int & value)
+    SubstructingOneObserver(int & value)
         : m_value(value)
     {
     }
@@ -124,7 +124,7 @@ BOOST_AUTO_TEST_CASE(CheckObserversPriorityUpdate)
     int value = 0;
     EmptySubject subject;
     auto mulObserver = make_shared<MultiplyingTwoObserver>(value);
-    auto subObserver = make_shared<SumstructingOneObserver>(value);
+    auto subObserver = make_shared<SubstructingOneObserver>(value);
 
     subject.RegisterObserver(mulObserver, 1);
     subject.RegisterObserver(subObserver, 2);
