@@ -3,11 +3,20 @@
 
 using namespace std;
 
-struct FooObserver : IObserver<int>
+struct CounterObserver : IObserver<int>
 {
     void Update(int const& data) override
     {
+        ++m_updateCount;
     }
+
+    size_t GetUpdateCount() const
+    {
+        return m_updateCount;
+    }
+
+private:
+    size_t m_updateCount = 0;
 };
 
 struct EmptySubject : Observable<int>
@@ -68,8 +77,8 @@ BOOST_AUTO_TEST_SUITE(ObserverImplTests)
 BOOST_AUTO_TEST_CASE(CheckRegisterObserver)
 {
     EmptySubject subject;
-    auto observer = make_shared<FooObserver>();
-    auto emptyObserver = shared_ptr<FooObserver>();
+    auto observer = make_shared<CounterObserver>();
+    auto emptyObserver = shared_ptr<CounterObserver>();
 
     BOOST_CHECK_THROW(subject.RegisterObserver(emptyObserver), invalid_argument);
     BOOST_CHECK_NO_THROW(subject.RegisterObserver(observer));
@@ -78,35 +87,59 @@ BOOST_AUTO_TEST_CASE(CheckRegisterObserver)
 BOOST_AUTO_TEST_CASE(CheckRemoveObserver)
 {
     EmptySubject subject;
-    auto observer = make_shared<FooObserver>();
-    auto emptyObserver = shared_ptr<FooObserver>();
+    auto observer = make_shared<CounterObserver>();
+    auto emptyObserver = shared_ptr<CounterObserver>();
+
+    subject.RegisterObserver(observer);
+
+    subject.NotifyObservers();
+    BOOST_CHECK_EQUAL(observer->GetUpdateCount(), 1);
+
+    BOOST_CHECK_NO_THROW(subject.RemoveObserver(observer));
+
+    subject.NotifyObservers();
+    BOOST_CHECK_EQUAL(observer->GetUpdateCount(), 1);
 
     BOOST_CHECK_THROW(subject.RemoveObserver(emptyObserver), invalid_argument);
-    BOOST_CHECK_NO_THROW(subject.RemoveObserver(observer));
 }
 
 BOOST_AUTO_TEST_CASE(CheckNotifyObservers)
 {
     EmptySubject subject;
-
-    auto observer = make_shared<FooObserver>();
+    int value = 2;
+    auto observer = make_shared<CounterObserver>();
+    auto mulObserver = make_shared<MultiplyingTwoObserver>(value);
 
     subject.RegisterObserver(observer);
+    subject.RegisterObserver(mulObserver);
+
     BOOST_CHECK_NO_THROW(subject.NotifyObservers());
-    observer.reset();
+
+    BOOST_CHECK_EQUAL(observer->GetUpdateCount(), 1);
+    BOOST_CHECK_EQUAL(value, 4);
+
+    mulObserver.reset();
     BOOST_CHECK_NO_THROW(subject.NotifyObservers());
+
+    BOOST_CHECK_EQUAL(value, 4);
 }
 
 BOOST_AUTO_TEST_CASE(CheckRemoveEmptyObservers)
 {
     EmptySubject subject;
 
-    auto observer = make_shared<FooObserver>();
+    int value = 2;
+    auto observer = make_shared<MultiplyingTwoObserver>(value);
 
     subject.RegisterObserver(observer);
+
+    subject.NotifyObservers();
+    BOOST_CHECK_EQUAL(value, 4);
+
     observer.reset();
 
     BOOST_CHECK_NO_THROW(subject.NotifyObservers());
+    BOOST_CHECK_EQUAL(value, 4);
 }
 
 BOOST_AUTO_TEST_CASE(CheckObserverRemoveSelfInUpdate)
@@ -126,10 +159,21 @@ BOOST_AUTO_TEST_CASE(CheckObserversPriorityUpdate)
     auto mulObserver = make_shared<MultiplyingTwoObserver>(value);
     auto subObserver = make_shared<SubstructingOneObserver>(value);
 
-    subject.RegisterObserver(mulObserver, 1);
-    subject.RegisterObserver(subObserver, 2);
+    subject.RegisterObserver(mulObserver, 2);
+    subject.RegisterObserver(subObserver, 1);
     subject.NotifyObservers();
     BOOST_CHECK_EQUAL(value, -2);
+}
+
+BOOST_AUTO_TEST_CASE(CheckObserverRegisteredOnce)
+{
+    int value = 0;
+    EmptySubject subject;
+    auto observer = make_shared<CounterObserver>();
+    subject.RegisterObserver(observer);
+    subject.RegisterObserver(observer);
+    subject.NotifyObservers();
+    BOOST_CHECK_EQUAL(observer->GetUpdateCount(), 1);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

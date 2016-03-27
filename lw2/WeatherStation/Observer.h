@@ -1,19 +1,12 @@
 ﻿#pragma once
 
-#include <set>
-#include <vector>
-#include <functional>
-#include <iostream>
-#include <exception>
 #include <memory>
-#include <algorithm>
-#include <iterator>
+#include <exception>
 
-#include <boost/multi_index_container.hpp>
-#include <boost/multi_index/ordered_index.hpp>
-#include <boost/multi_index/indexed_by.hpp>
-#include <boost/multi_index/identity.hpp>
-#include <boost/multi_index/member.hpp>
+#include "boost\multi_index\ordered_index.hpp"
+#include "boost\multi_index\member.hpp"
+#include "boost\multi_index\identity.hpp"
+#include "boost\multi_index_container.hpp"
 
 template <typename T>
 class IObserver
@@ -52,10 +45,11 @@ public:
     void NotifyObservers() override
     {
         T data = GetChangedData();
-        auto observers = GetObserversOrderedByPriority();
-        auto observer = observers.begin();
+        auto observersCopy = m_observers;
+        auto & orderedObservers = observersCopy.get<1>();
+        auto observer = orderedObservers.begin();
 
-        while (observer != observers.end())
+        while (observer != orderedObservers.end())
         {
             auto current = (observer++)->ptr.lock();
             if (current)
@@ -79,17 +73,6 @@ protected:
     virtual T GetChangedData() const = 0;
 
 private:
-    auto GetObserversOrderedByPriority()
-    {
-        std::vector<ObserverInfo> observers;
-        std::copy(m_observers.begin(), m_observers.end(), std::back_inserter(observers));
-        std::sort(observers.begin(), observers.end(), [](auto const& lhs, auto const& rhs) {
-            return lhs.priority > rhs.priority;
-        });
-
-        return observers;
-    }
-
     struct ObserverInfo
     {
         std::weak_ptr<ObserverType> ptr;
@@ -99,14 +82,22 @@ private:
         {
             return ptr.lock().get() < rhs.ptr.lock().get();
         }
+
+        bool operator == (ObserverInfo const& rhs) const
+        {
+            return ptr.lock().get() == rhs.ptr.lock().get();
+        }
     };
 
-    std::set<ObserverInfo> m_observers;
-    /* typedef boost::multi_index_container<
+    boost::multi_index_container<
         ObserverInfo,
         boost::multi_index::indexed_by<
-            boost::multi_index::hashed_unique<boost::multi_index::member<ObserverInfo, std::weak_ptr<ObserverType>, &ObserverInfo::ptr>>,
-            boost::multi_index::ordered_non_unique<ObserverInfo>
+            boost::multi_index::ordered_unique<
+                boost::multi_index::identity<ObserverInfo>
+            >,
+            boost::multi_index::ordered_non_unique<
+                boost::multi_index::member<ObserverInfo, unsigned, &ObserverInfo::priority>
+            >
         >
-    > ObserversContainer; */
+    > m_observers;
 };
