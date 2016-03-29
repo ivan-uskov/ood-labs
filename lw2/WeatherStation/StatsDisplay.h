@@ -5,7 +5,7 @@
 class StatsDisplay : public WeatherData::Display
 {
 public:
-    void Update(WeatherInfo const& data) override;
+    void Update(ObservableType const& subject) override;
 
 private:
     typedef SimpleStatisticsCalculator<double> ParameterStats;

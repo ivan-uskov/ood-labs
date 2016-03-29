@@ -8,11 +8,16 @@
 #include "boost\multi_index\identity.hpp"
 #include "boost\multi_index_container.hpp"
 
+template <typename T> 
+class IObservable;
+
 template <typename T>
 class IObserver
 {
 public:
-    virtual void Update(T const& data) = 0;
+    typedef IObservable<T> ObservableType;
+
+    virtual void Update(ObservableType const& subject) = 0;
     virtual ~IObserver() = default;
 };
 
@@ -26,12 +31,25 @@ public:
     virtual void NotifyObservers() = 0;
     virtual void RegisterObserver(std::shared_ptr<ObserverType> const& observer, unsigned priority = 0) = 0;
     virtual void RemoveObserver(std::shared_ptr<ObserverType> const& observer) = 0;
+
+    virtual T GetChangedData() const = 0;
+    virtual size_t GetObservableId() const = 0;
 };
 
 template <typename T>
 class Observable : public IObservable<T>
 {
 public:
+    size_t GetObservableId() const override
+    {
+        return m_observableId;
+    }
+
+    void SetObservableId(size_t observableId)
+    {
+        m_observableId = observableId;
+    }
+
     void RegisterObserver(std::shared_ptr<ObserverType> const& observer, unsigned priority = 0) override
     {
         if (!observer)
@@ -44,7 +62,6 @@ public:
 
     void NotifyObservers() override
     {
-        T data = GetChangedData();
         auto observersCopy = m_observers;
         auto & orderedObservers = observersCopy.get<1>();
         auto observer = orderedObservers.begin();
@@ -54,7 +71,7 @@ public:
             auto current = (observer++)->ptr.lock();
             if (current)
             {
-                current->Update(data);
+                current->Update(*this);
             }
         }
     }
@@ -68,9 +85,6 @@ public:
 
         m_observers.erase({ observer, 0 });
     }
-
-protected:
-    virtual T GetChangedData() const = 0;
 
 private:
     struct ObserverInfo
@@ -100,4 +114,6 @@ private:
             >
         >
     > m_observers;
+
+    size_t m_observableId = 0;
 };

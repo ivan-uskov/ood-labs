@@ -3,9 +3,9 @@
 
 using namespace std;
 
-void StatsDisplay::Update(WeatherInfo const& data)
+void StatsDisplay::Update(ObservableType const& subject)
 {
-    UpdateStatistics(data);
+    UpdateStatistics(subject.GetChangedData());
     PrintStatistics();
 }
 

@@ -5,9 +5,10 @@ using namespace std;
 
 struct CounterObserver : IObserver<int>
 {
-    void Update(int const& data) override
+    void Update(ObservableType const& subject) override
     {
         ++m_updateCount;
+        m_lastUpdateObservableId = subject.GetObservableId();
     }
 
     size_t GetUpdateCount() const
@@ -15,8 +16,14 @@ struct CounterObserver : IObserver<int>
         return m_updateCount;
     }
 
+    size_t GetLastUpdateObservableId() const
+    {
+        return m_lastUpdateObservableId;
+    }
+
 private:
     size_t m_updateCount = 0;
+    size_t m_lastUpdateObservableId = 0;
 };
 
 struct EmptySubject : Observable<int>
@@ -34,7 +41,7 @@ struct SelfRemoverObserver : IObserver<int>, std::enable_shared_from_this<SelfRe
     {
     }
 
-    void Update(int const& data) override
+    void Update(ObservableType const&) override
     {
         m_subject.RemoveObserver(shared_from_this());
     }
@@ -49,7 +56,7 @@ struct MultiplyingTwoObserver : IObserver<int>
     {
     }
 
-    void Update(int const&) override
+    void Update(ObservableType const&) override
     {
         m_value *= 2;
     }
@@ -64,7 +71,7 @@ struct SubstructingOneObserver : IObserver<int>
     {
     }
 
-    void Update(int const&) override
+    void Update(ObservableType const&) override
     {
         m_value -= 1;
     }
@@ -174,6 +181,23 @@ BOOST_AUTO_TEST_CASE(CheckObserverRegisteredOnce)
     subject.RegisterObserver(observer);
     subject.NotifyObservers();
     BOOST_CHECK_EQUAL(observer->GetUpdateCount(), 1);
+}
+
+BOOST_AUTO_TEST_CASE(CheckObserverCanIdentifySubject)
+{
+    EmptySubject subjectOne, subjectTwo;
+    subjectOne.SetObservableId(1);
+    subjectTwo.SetObservableId(2);
+
+    auto observer = make_shared<CounterObserver>();
+    subjectOne.RegisterObserver(observer);
+    subjectTwo.RegisterObserver(observer);
+
+    subjectOne.NotifyObservers();
+    BOOST_CHECK_EQUAL(observer->GetLastUpdateObservableId(), 1);
+
+    subjectTwo.NotifyObservers();
+    BOOST_CHECK_EQUAL(observer->GetLastUpdateObservableId(), 2);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
