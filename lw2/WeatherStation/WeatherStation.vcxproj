@@ -159,6 +159,7 @@
     <ClCompile Include="StatsDisplay.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="WeatherData.cpp" />
+    <ClCompile Include="WeatherStationType.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Display.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="WeatherData.h" />
+    <ClInclude Include="WeatherStationType.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

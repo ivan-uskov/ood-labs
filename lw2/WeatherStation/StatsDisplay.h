@@ -12,6 +12,7 @@ private:
 
     void UpdateStatistics(WeatherInfo const& data);
     void PrintStatistics() const;
+    void PrintWeatherStationInfo(size_t weatherStationId) const;
 
     void PrintParameterStatistics(ParameterStats const& stats, std::string const& parameterName) const;
 

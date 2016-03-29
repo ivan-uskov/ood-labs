@@ -1,11 +1,13 @@
 #include "stdafx.h"
 #include "StatsDisplay.h"
+#include "WeatherStationType.h"
 
 using namespace std;
 
 void StatsDisplay::Update(ObservableType const& subject)
 {
     UpdateStatistics(subject.GetChangedData());
+    PrintWeatherStationInfo(subject.GetObservableId());
     PrintStatistics();
 }
 
@@ -14,6 +16,14 @@ void StatsDisplay::UpdateStatistics(WeatherInfo const& data)
     m_humidityStats.Update(data.humidity);
     m_pressureStats.Update(data.pressure);
     m_temperatureStats.Update(data.temperature);
+}
+
+void StatsDisplay::PrintWeatherStationInfo(size_t weatherStationId) const
+{
+    if (IsWeatherStationType(weatherStationId))
+    {
+        cout << "WeatherStation type: " << static_cast<WeatherStationType>(weatherStationId) << endl;
+    }
 }
 
 void StatsDisplay::PrintStatistics() const

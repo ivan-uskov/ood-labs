@@ -30,6 +30,9 @@
     <ClCompile Include="Display.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WeatherStationType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WeatherData.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SimpleStatisticsCalculator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WeatherStationType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

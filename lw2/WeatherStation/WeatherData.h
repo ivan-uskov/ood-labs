@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Observer.h"
+#include "../observer/Observer.h"
 
 using namespace std;
 
@@ -15,11 +15,8 @@ class WeatherData : public Observable<WeatherInfo>
 public:
     typedef ObserverType Display;
 
-    // Температура в градусах Цельсия
     double GetTemperature() const;
-    // Относительная влажность (0...100)
     double GetHumidity() const;
-    // Атмосферное давление (в мм.рт.ст)
     double GetPressure() const;
 
     void MeasurementsChanged();

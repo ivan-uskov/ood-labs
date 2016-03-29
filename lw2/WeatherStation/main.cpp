@@ -2,10 +2,11 @@
 #include "WeatherData.h"
 #include "Display.h"
 #include "StatsDisplay.h"
+#include "WeatherStationType.h"
 
 using namespace std;
 
-int main()
+void WeatherStation()
 {
     WeatherData wd;
 
@@ -22,5 +23,27 @@ int main()
 
     wd.SetMeasurements(10, 0.8, 761);
     wd.SetMeasurements(-10, 0.8, 761);
+}
+
+void WeatherStationDuo()
+{
+    WeatherData wdIn, wdOut;
+
+    wdIn.SetObservableId(static_cast<size_t>(WeatherStationType::In));
+    wdOut.SetObservableId(static_cast<size_t>(WeatherStationType::Out));
+
+    auto statsDisplay = make_shared<StatsDisplay>();
+    wdIn.RegisterObserver(statsDisplay);
+    wdOut.RegisterObserver(statsDisplay);
+
+
+    wdIn.SetMeasurements(3, 0.7, 760);
+    wdOut.SetMeasurements(4, 0.8, 761);
+}
+
+int main()
+{
+    WeatherStation();
+    WeatherStationDuo();
     return 0;
 }

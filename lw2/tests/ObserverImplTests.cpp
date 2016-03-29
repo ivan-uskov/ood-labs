@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../WeatherStation/Observer.h"
+#include "../observer/Observer.h"
 
 using namespace std;
 
