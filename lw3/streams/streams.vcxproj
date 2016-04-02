@@ -155,10 +155,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FileInputStream.cpp" />
+    <ClCompile Include="FileOutputStream.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileInputStream.h" />
+    <ClInclude Include="FileOutputStream.h" />
     <ClInclude Include="IInputDataStream.h" />
     <ClInclude Include="IOutputDataStream.h" />
   </ItemGroup>

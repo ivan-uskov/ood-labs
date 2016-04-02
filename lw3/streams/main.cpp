@@ -1,4 +1,5 @@
 ﻿#include "FileInputStream.h"
+#include "FileOutputStream.h"
 
 using namespace std;
 
