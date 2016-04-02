@@ -46,6 +46,29 @@ int main()
     {
         auto beverage =
             make_unique<CMilkshake>()
+            << ChangeQuantity(BeverageQuantity::Big)
+            << MakeCondiment<CCinnamon>()
+            << MakeCondiment<CLemon>(2)
+            << MakeCondiment<CIceCubes>(2, IceCubeType::Dry)
+            << MakeCondiment<CChocolateCrumbs>(2);
+
+        cout << beverage->GetDescription() << " costs " << beverage->GetCost() << endl;
+    }
+
+    {
+        auto beverage =
+            make_unique<CRedTea>()
+            << MakeCondiment<CCinnamon>()
+            << MakeCondiment<CLemon>(2)
+            << MakeCondiment<CIceCubes>(2, IceCubeType::Dry)
+            << MakeCondiment<CChocolateCrumbs>(2);
+
+        cout << beverage->GetDescription() << " costs " << beverage->GetCost() << endl;
+    }
+
+    {
+        auto beverage =
+            make_unique<CMilkshake>()
             << MakeCondiment<CSyrup>(SyrupType::Maple)
             << MakeCondiment<CCoconutFlakes>(8);
 

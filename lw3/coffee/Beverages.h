@@ -5,6 +5,8 @@
 #include "BeverageType.h"
 #include "BeverageCostProvider.h"
 
+#include <sstream>
+
 // Базовая реализация напитка, предоставляющая его описание
 class CBeverage : public IBeverage
 {
@@ -15,7 +17,10 @@ public:
 
     std::string GetDescription() const override final
     {
-        return m_description;
+        std::ostringstream descriptionStrm;
+        descriptionStrm << m_description << " " << m_quantity;
+
+        return descriptionStrm.str();
     }
 
     double GetCost() const override final
@@ -85,14 +90,56 @@ protected:
 class CTea : public CBeverage
 {
 public:
-    CTea()
-        : CBeverage("Tea")
+    CTea(const std::string & description = "Tea")
+        : CBeverage(description)
     {}
 
 protected:
     BeverageType GetType() const override
     {
         return BeverageType::Tea;
+    }
+};
+
+class CRedTea : public CTea
+{
+public:
+    CRedTea()
+        : CTea("Red Tea")
+    {}
+
+protected:
+    BeverageType GetType() const override
+    {
+        return BeverageType::RedTea;
+    }
+};
+
+class CGreenTea : public CTea
+{
+public:
+    CGreenTea()
+        : CTea("Green Tea")
+    {}
+
+protected:
+    BeverageType GetType() const override
+    {
+        return BeverageType::GreenTea;
+    }
+};
+
+class CYellowTea : public CTea
+{
+public:
+    CYellowTea()
+        : CTea("Yellow Tea")
+    {}
+
+protected:
+    BeverageType GetType() const override
+    {
+        return BeverageType::YellowTea;
     }
 };
 

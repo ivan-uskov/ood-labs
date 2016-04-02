@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BeverageCostProvider.cpp" />
+    <ClCompile Include="BeverageQuantity.cpp" />
     <ClCompile Include="BeverageType.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

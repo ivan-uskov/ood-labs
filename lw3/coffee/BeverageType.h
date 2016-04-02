@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 enum class BeverageType
 {
@@ -6,6 +7,9 @@ enum class BeverageType
     Cappuchino,
     Latte,
     Tea,
+    RedTea,
+    GreenTea,
+    YellowTea,
     Milkshake
 };
 

@@ -24,6 +24,9 @@
     <ClCompile Include="BeverageType.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BeverageQuantity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Condiments.h">

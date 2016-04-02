@@ -21,8 +21,7 @@ public:
 protected:
     CCondimentDecorator(IBeveragePtr && beverage)
         : m_beverage(move(beverage))
-    {
-    }
+    {}
 private:
     IBeveragePtr m_beverage;
 };
@@ -70,8 +69,8 @@ private:
 
 enum class IceCubeType
 {
-    Dry,	// Сухой лед (для суровых сибирских мужиков)
-    Water	// Обычные кубики из воды
+    Dry,    // Сухой лед (для суровых сибирских мужиков)
+    Water   // Обычные кубики из воды
 };
 
 // Добавка "Кубики льда". Определяется типом и количеством кубиков, что влияет на стоимость

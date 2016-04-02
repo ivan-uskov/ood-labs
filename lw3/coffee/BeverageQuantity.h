@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 enum class BeverageQuantity
 {
@@ -7,3 +8,5 @@ enum class BeverageQuantity
     Big,
     Duo
 };
+
+std::ostream & operator << (std::ostream & out, BeverageQuantity const& quantity);
