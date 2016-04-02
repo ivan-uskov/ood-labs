@@ -70,8 +70,19 @@ int main()
         auto beverage =
             make_unique<CMilkshake>()
             << MakeCondiment<CSyrup>(SyrupType::Maple)
+            << MakeCondiment<CCream>(200)
             << MakeCondiment<CCoconutFlakes>(8);
 
+        cout << beverage->GetDescription() << " costs " << beverage->GetCost() << endl;
+    }
+
+    {
+        auto beverage =
+            make_unique<CMilkshake>()
+            << MakeCondiment<CSyrup>(SyrupType::Maple)
+            << MakeCondiment<CCoconutFlakes>(8)
+            << MakeCondiment<CChocolatePices>(4)
+            << MakeCondiment<CLiquor>(LiquorType::Chocolate);
         cout << beverage->GetDescription() << " costs " << beverage->GetCost() << endl;
     }
 }
