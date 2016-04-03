@@ -1,6 +1,7 @@
 ﻿#include "FileInputStream.h"
 #include "FileOutputStream.h"
 #include "MemoryInputStream.h"
+#include "MemoryOutputStream.h"
 #include "VectorMemoryStream.h"
 
 using namespace std;
@@ -8,14 +9,14 @@ using namespace std;
 int main()
 {
     CVectorMemoryStream memory;
-    memory.Add(5);
-    memory.Add(4);
-    memory.Add(7);
-    CMemoryInputStream in(memory);
+    CMemoryOutputStream out(memory);
+    out.WriteByte(1);
+    out.WriteByte(2);
+    out.WriteByte(3);
 
-    while (!in.IsEOF())
+    for (int i = 0; i < memory.Size(); ++i)
     {
-        cout << static_cast<int>(in.ReadByte());
+        cout << static_cast<int>(memory[i]);
     }
 
     return 0;

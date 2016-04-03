@@ -158,6 +158,7 @@
     <ClCompile Include="FileOutputStream.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MemoryInputStream.cpp" />
+    <ClCompile Include="MemoryOutputStream.cpp" />
     <ClCompile Include="VectorMemoryStream.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +168,7 @@
     <ClInclude Include="IMemoryStream.h" />
     <ClInclude Include="IOutputDataStream.h" />
     <ClInclude Include="MemoryInputStream.h" />
+    <ClInclude Include="MemoryOutputStream.h" />
     <ClInclude Include="VectorMemoryStream.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
