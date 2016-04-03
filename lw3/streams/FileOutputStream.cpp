@@ -13,12 +13,12 @@ CFileOutputStream::CFileOutputStream(string const& fileName)
 
 void CFileOutputStream::WriteByte(uint8_t data)
 {
-    WriteBlock(&data, sizeof(uint8_t));
+    WriteBlock(&data, 1);
 }
 
 void CFileOutputStream::WriteBlock(const void * srcData, std::streamsize size)
 {
-    if (!m_file.write(reinterpret_cast<const char*>(srcData), size))
+    if (!m_file.write(reinterpret_cast<const char*>(srcData), size * sizeof(uint8_t)))
     {
         throw ios_base::failure("Failed to write data");
     }

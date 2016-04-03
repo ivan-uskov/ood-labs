@@ -20,14 +20,14 @@ uint8_t CFileInputStream::ReadByte()
 {
     uint8_t data;
 
-    ReadBlock(&data, sizeof(uint8_t));
+    ReadBlock(&data, 1);
 
     return data;
 }
 
 std::streamsize CFileInputStream::ReadBlock(void * dstBuffer, std::streamsize size)
 {
-    if (!m_file.read(reinterpret_cast<char*>(dstBuffer), size))
+    if (!m_file.read(reinterpret_cast<char*>(dstBuffer), size * sizeof(uint8_t)))
     {
         throw ios_base::failure("Failed to read data");
     }

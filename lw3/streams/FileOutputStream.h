@@ -3,7 +3,7 @@
 #include "IOutputDataStream.h"
 #include <fstream>
 
-class CFileOutputStream : IOutputDataStream
+class CFileOutputStream : public IOutputDataStream
 {
 public:
     CFileOutputStream(std::string const& fileName);

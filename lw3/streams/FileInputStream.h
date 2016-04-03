@@ -1,9 +1,9 @@
 #pragma once
-#include "IInputDataStream.h"
 
+#include "IInputDataStream.h"
 #include <fstream>
 
-class CFileInputStream : IInputDataStream
+class CFileInputStream : public IInputDataStream
 {
 public:
     CFileInputStream(std::string const& fileName);
