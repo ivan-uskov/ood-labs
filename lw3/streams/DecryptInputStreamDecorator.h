@@ -1,13 +1,13 @@
 #pragma once
 
-#include "NumberReplacementTable.h"
 #include "IInputDataStream.h"
+#include "NumberReplacementTable.h"
 #include <memory>
 
-class CEncryptInputStreamDecorator : public IInputDataStream
+class CDecryptInputStreamDecorator : public IInputDataStream
 {
 public:
-    CEncryptInputStreamDecorator(std::unique_ptr<IInputDataStream> && baseStream, unsigned seed);
+    CDecryptInputStreamDecorator(std::unique_ptr<IInputDataStream> && baseStream, unsigned seed);
 
     bool IsEOF() const override;
     uint8_t ReadByte() override;

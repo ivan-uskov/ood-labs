@@ -12,6 +12,6 @@ public:
     void WriteBlock(const void * srcData, std::streamsize size) override;
 
 private:
-    std::fstream m_file;
+    std::ofstream m_file;
 };
 

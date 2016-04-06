@@ -3,7 +3,7 @@
 using namespace std;
 
 CFileOutputStream::CFileOutputStream(string const& fileName)
-    : m_file(fileName, fstream::out | fstream::binary)
+    : m_file(fileName, ifstream::binary)
 {
     if (!m_file)
     {

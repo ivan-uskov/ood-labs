@@ -3,7 +3,7 @@
 using namespace std;
 
 CFileInputStream::CFileInputStream(std::string const& fileName)
-    : m_file(fileName, fstream::in | fstream::binary)
+    : m_file(fileName, ofstream::binary)
 {
     if (!m_file)
     {
@@ -30,6 +30,11 @@ std::streamsize CFileInputStream::ReadBlock(void * dstBuffer, std::streamsize si
     if (!m_file.read(reinterpret_cast<char*>(dstBuffer), size * sizeof(uint8_t)))
     {
         throw ios_base::failure("Failed to read data");
+    }
+
+    if (m_file.peek() == EOF)
+    {
+        m_file.setstate(ios::eofbit);
     }
 
     return m_file.gcount();
