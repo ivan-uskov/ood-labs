@@ -26,7 +26,7 @@ streamsize CMemoryInputStream::ReadBlock(void * dstBuffer, streamsize size)
     }
 
     auto bufferPtr = reinterpret_cast<uint8_t*>(dstBuffer);
-    for (size_t i = 0; i < size; ++i)
+    for (streamsize i = 0; i < size; ++i)
     {
         *(bufferPtr++) = m_memoryStream[m_offset++];
     }

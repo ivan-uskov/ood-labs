@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CryptInputStreamDecorator.cpp" />
     <ClCompile Include="DecoratorCreators.cpp" />
     <ClCompile Include="DecryptInputStreamDecorator.cpp" />
     <ClCompile Include="EncryptInputStreamDecorator.cpp" />
@@ -165,6 +166,7 @@
     <ClCompile Include="VectorMemoryStream.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CryptInputStreamDecorator.h" />
     <ClInclude Include="DecoratorCreators.h" />
     <ClInclude Include="DecryptInputStreamDecorator.h" />
     <ClInclude Include="NumberReplacementTable.h" />
