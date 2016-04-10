@@ -2,6 +2,7 @@
 
 #include "IInputDataStream.h"
 #include <fstream>
+#include <memory>
 
 class CFileInputStream : public IInputDataStream
 {
@@ -14,6 +15,7 @@ public:
     std::streamsize ReadBlock(void * dstBuffer, std::streamsize size) override;
 
 private:
-    std::istream & m_pFile;
-    std::ifstream m_file;
+    void UpdateEofBit();
+
+    std::unique_ptr<std::istream> m_file;
 };

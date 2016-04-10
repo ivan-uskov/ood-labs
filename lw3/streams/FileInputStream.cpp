@@ -3,27 +3,30 @@
 using namespace std;
 
 CFileInputStream::CFileInputStream(std::string const& fileName)
-    : m_file(fileName, ofstream::binary)
-    , m_pFile(m_file)
+    : m_file(make_unique<ifstream>(fileName, ofstream::binary))
 {
-    if (!m_pFile)
+    if (!m_file || !(*m_file))
     {
         throw ios_base::failure("Can't open file: " + fileName);
     }
+
+    UpdateEofBit();
 }
 
 CFileInputStream::CFileInputStream(std::istream & file)
-    : m_pFile(file)
+    : m_file(addressof(file))
 {
-    if (!m_pFile)
+    if (!m_file || !(*m_file))
     {
         throw ios_base::failure("File not opened");
     }
+
+    UpdateEofBit();
 }
 
 bool CFileInputStream::IsEOF() const
 {
-    return m_pFile.eof();
+    return m_file && m_file->eof();
 }
 
 uint8_t CFileInputStream::ReadByte()
@@ -37,15 +40,23 @@ uint8_t CFileInputStream::ReadByte()
 
 std::streamsize CFileInputStream::ReadBlock(void * dstBuffer, std::streamsize size)
 {
-    if (!m_pFile.read(reinterpret_cast<char*>(dstBuffer), size * sizeof(uint8_t)))
+    if (!m_file->read(reinterpret_cast<char*>(dstBuffer), size * sizeof(uint8_t)))
     {
         throw ios_base::failure("Failed to read data");
     }
 
-    if (m_pFile.peek() == EOF)
-    {
-        m_pFile.setstate(ios::eofbit);
-    }
+    auto bytesRed = m_file->gcount();
 
-    return m_pFile.gcount();
+    UpdateEofBit();
+
+    return bytesRed;
 }
+
+void CFileInputStream::UpdateEofBit()
+{
+    if (m_file->peek() == EOF)
+    {
+        m_file->setstate(ios::eofbit);
+    }
+}
+
