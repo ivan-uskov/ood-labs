@@ -48,8 +48,7 @@ private:
     size_t GetTableSize() const
     {
         static int BITS_IN_BYTE = 8;
-        static int SS_BASE      = 2;
-        return static_cast<size_t>(std::pow(SS_BASE, BITS_IN_BYTE * sizeof(T)));
+        return size_t(1) << (BITS_IN_BYTE * sizeof(T));
     }
 
     T m_min;
