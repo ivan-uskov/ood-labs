@@ -19,6 +19,18 @@ namespace DecoratorCreators
         virtual ~IDecoratorCreator() = default;
     };
 
+    class CDecompressDecoratorCreator : public IDecoratorCreator
+    {
+    public:
+        bool AddValue(std::string const& arg) override;
+        bool IsValid() const override;
+        bool CanDecorate() const override;
+        std::unique_ptr<IInputDataStream> Decorate(std::unique_ptr<IInputDataStream> && stream) override;
+
+    private:
+        bool m_argFetched = false;
+    };
+
     class CCryptDecoratorCreator : public IDecoratorCreator
     {
     public:

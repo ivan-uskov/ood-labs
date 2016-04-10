@@ -158,6 +158,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DecompressInputStreamDecoratorTest.cpp" />
     <ClCompile Include="InputStreamTests.cpp" />
     <ClCompile Include="NumberReplacementTableTests.cpp" />
     <ClCompile Include="stdafx.cpp">

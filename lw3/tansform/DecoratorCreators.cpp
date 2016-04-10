@@ -3,6 +3,7 @@
 
 #include "../streams/DecryptInputStreamDecorator.h"
 #include "../streams/EncryptInputStreamDecorator.h"
+#include "../streams/DecompressInputStreamDecorator.h"
 
 #include <boost/lexical_cast.hpp>
 
@@ -25,6 +26,32 @@ namespace
 
 namespace DecoratorCreators
 {
+
+    bool CDecompressDecoratorCreator::AddValue(string const& arg)
+    {
+        if (arg == "--decompress")
+        {
+            m_argFetched = true;
+        }
+
+        return m_argFetched;
+    }
+
+    bool CDecompressDecoratorCreator::IsValid() const
+    {
+        return !m_argFetched;
+    }
+
+    bool CDecompressDecoratorCreator::CanDecorate() const
+    {
+        return m_argFetched;
+    }
+
+    unique_ptr<IInputDataStream> CDecompressDecoratorCreator::Decorate(unique_ptr<IInputDataStream> && stream)
+    {
+        m_argFetched = false;
+        return unique_ptr<IInputDataStream>(new CDecompressInputStreamDecorator(move(stream)));
+    }
 
     bool CCryptDecoratorCreator::AddValue(string const& arg)
     {
@@ -80,12 +107,14 @@ namespace DecoratorCreators
 
     vector<unique_ptr<IDecoratorCreator>> CreateDecoratorCreators()
     {
-        unique_ptr<IDecoratorCreator> encryptDecoratorCreator = make_unique<CEncryptDecoratorCreator>();
-        unique_ptr<IDecoratorCreator> decryptDecoratorCreator = make_unique<CDecryptDecoratorCreator>();
+        unique_ptr<IDecoratorCreator> encryptDecoratorCreator    = make_unique<CEncryptDecoratorCreator>();
+        unique_ptr<IDecoratorCreator> decryptDecoratorCreator    = make_unique<CDecryptDecoratorCreator>();
+        unique_ptr<IDecoratorCreator> decompressDecoratorCreator = make_unique<CDecompressDecoratorCreator>();
 
         vector<unique_ptr<IDecoratorCreator>> decoratorCreators;
         decoratorCreators.push_back(move(encryptDecoratorCreator));
         decoratorCreators.push_back(move(decryptDecoratorCreator));
+        decoratorCreators.push_back(move(decompressDecoratorCreator));
 
         return move(decoratorCreators);
     }
