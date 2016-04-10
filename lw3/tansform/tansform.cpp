@@ -1,9 +1,10 @@
-﻿#include "FileInputStream.h"
-#include "FileOutputStream.h"
-#include "MemoryInputStream.h"
-#include "MemoryOutputStream.h"
-#include "VectorMemoryStream.h"
-#include "DecoratorCreators.h"
+#include "stdafx.h"
+#include "../streams/FileInputStream.h"
+#include "../streams/FileOutputStream.h"
+#include "../streams/MemoryInputStream.h"
+#include "../streams/MemoryOutputStream.h"
+#include "../streams/VectorMemoryStream.h"
+#include "../streams/DecoratorCreators.h"
 
 using namespace std;
 
