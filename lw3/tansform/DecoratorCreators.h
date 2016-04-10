@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IInputDataStream.h"
+#include "../streams/IInputDataStream.h"
 
 #include <vector>
 #include <memory>

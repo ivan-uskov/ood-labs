@@ -1,7 +1,8 @@
+#include "stdafx.h"
 #include "DecoratorCreators.h"
 
-#include "DecryptInputStreamDecorator.h"
-#include "EncryptInputStreamDecorator.h"
+#include "../streams/DecryptInputStreamDecorator.h"
+#include "../streams/EncryptInputStreamDecorator.h"
 
 #include <boost/lexical_cast.hpp>
 
