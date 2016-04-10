@@ -20,7 +20,6 @@ void CopyFiles(int argc, char ** argv)
     {
         outFile->WriteByte(inFile->ReadByte());
     }
-
 }
 
 int main(int argc, char ** argv)

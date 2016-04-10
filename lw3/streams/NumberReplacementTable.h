@@ -12,29 +12,38 @@ class CNumberReplacementTable
 public:
     CNumberReplacementTable(unsigned seed)
         : m_table(GetTableSize())
+        , m_reversedTable(GetTableSize())
         , m_min(std::numeric_limits<T>::min())
     {
         std::iota(m_table.begin(), m_table.end(), m_min);
         std::shuffle(m_table.begin(), m_table.end(), RandomNumberGenerator(seed));
-    }
 
-    T replace(T const& item) const
-    {
-        return m_table.at(item + std::abs(m_min));
-    }
-
-    T unreplace(T const& item) const
-    {
-        auto it = std::find(m_table.begin(), m_table.end(), item);
-        if (it == m_table.end())
+        for (size_t i = 0; i < m_table.size(); ++i)
         {
-            throw std::out_of_range("Unexpected value");
+            m_reversedTable[GetAbsoluteValue(m_table[i])] = GetRealValue(i);
         }
+    }
 
-        return (it - m_table.begin()) + m_min;
+    T replace(T item) const
+    {
+        return m_table.at(GetAbsoluteValue(item));
+    }
+
+    T unreplace(T item) const
+    {
+        return m_reversedTable.at(GetAbsoluteValue(item));
     }
 
 private:
+    T GetAbsoluteValue(T item) const
+    {
+        return item + std::abs(m_min);
+    }
+
+    T GetRealValue(size_t item) const
+    {
+        return static_cast<T>(item - std::abs(m_min));
+    }
 
     size_t GetTableSize() const
     {
@@ -44,5 +53,5 @@ private:
     }
 
     T m_min;
-    std::vector<T> m_table;
+    std::vector<T> m_table, m_reversedTable;
 };
