@@ -42,6 +42,9 @@
     <ClCompile Include="DecoratorCreators.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CryptInputStreamDecorator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IOutputDataStream.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DecoratorCreators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CryptInputStreamDecorator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
