@@ -32,5 +32,8 @@
     <ClCompile Include="InputStreamTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NumberReplacementTableTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
