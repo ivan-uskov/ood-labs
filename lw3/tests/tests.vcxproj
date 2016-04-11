@@ -158,9 +158,11 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CompressOutputStreamDecoratorTests.cpp" />
     <ClCompile Include="DecompressInputStreamDecoratorTest.cpp" />
-    <ClCompile Include="InputStreamTests.cpp" />
+    <ClCompile Include="FileInputStreamTests.cpp" />
     <ClCompile Include="NumberReplacementTableTests.cpp" />
+    <ClCompile Include="FileOutputStreamTests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <tchar.h>
 #include <array>
+#include <iostream>
+#include <fstream>
 
 
 ///=======================================
@@ -13,3 +15,5 @@
 #pragma warning (disable:4702)
 #include <boost/test/unit_test.hpp>
 ///=======================================
+
+std::string GetFileContents(const std::string & fileName);

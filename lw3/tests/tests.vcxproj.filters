@@ -29,13 +29,19 @@
     <ClCompile Include="tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InputStreamTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NumberReplacementTableTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DecompressInputStreamDecoratorTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CompressOutputStreamDecoratorTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileInputStreamTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileOutputStreamTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
