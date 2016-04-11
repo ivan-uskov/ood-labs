@@ -13,6 +13,8 @@ namespace
     }
 }
 
+BOOST_AUTO_TEST_SUITE(DecompressOutputStreamTests)
+
 BOOST_AUTO_TEST_CASE(CheckDecompressByte)
 {
     BOOST_CHECK_THROW(CFileInputStream("not_existing_file"), ios::failure);
@@ -37,3 +39,5 @@ BOOST_AUTO_TEST_CASE(CheckDecompressByte)
 
     remove("not_existing_file");
 }
+
+BOOST_AUTO_TEST_SUITE_END()

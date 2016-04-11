@@ -18,11 +18,13 @@ namespace
     }
 }
 
+BOOST_AUTO_TEST_SUITE(CompressOutputStreamTests)
+
 BOOST_AUTO_TEST_CASE(CheckCompressByte)
 {
     size_t bytesCount = 20;
     {
-        auto out = CreateCompressOutputStream("not_existing_file1");
+        auto out = CreateCompressOutputStream("not_existing_file");
         for (size_t i = 0; i < bytesCount; ++i)
         {
             out->WriteByte('4');
@@ -34,7 +36,23 @@ BOOST_AUTO_TEST_CASE(CheckCompressByte)
         }
     }
 
-    BOOST_CHECK_EQUAL(GetFileContents("not_existing_file1"), GetCompressedBytesString(bytesCount));
+    BOOST_CHECK_EQUAL(GetFileContents("not_existing_file"), GetCompressedBytesString(bytesCount));
+
+    remove("not_existing_file");
+}
+
+BOOST_AUTO_TEST_CASE(CheckCompressionOverflow)
+{
+    size_t bytesCount = 257;
+    {
+        auto out = CreateCompressOutputStream("not_existing_file");
+        for (size_t i = 0; i < bytesCount; ++i)
+        {
+            out->WriteByte('4');
+        }
+    }
+
+    BOOST_CHECK_EQUAL(GetFileContents("not_existing_file"), to_string(4) + char(255) + to_string(4) + char(2));
 
     remove("not_existing_file");
 }
@@ -63,3 +81,5 @@ BOOST_AUTO_TEST_CASE(CheckCompressBlock)
 
     remove("not_existing_file");
 }
+
+BOOST_AUTO_TEST_SUITE_END()
