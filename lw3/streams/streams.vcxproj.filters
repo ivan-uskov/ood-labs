@@ -42,6 +42,9 @@
     <ClCompile Include="DecompressInputStreamDecorator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CompressOutputStreamDecorator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IOutputDataStream.h">
@@ -81,6 +84,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DecompressInputStreamDecorator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompressOutputStreamDecorator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

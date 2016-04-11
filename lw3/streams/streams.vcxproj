@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CompressOutputStreamDecorator.cpp" />
     <ClCompile Include="DecompressInputStreamDecorator.cpp" />
     <ClCompile Include="CryptInputStreamDecorator.cpp" />
     <ClCompile Include="DecryptInputStreamDecorator.cpp" />
@@ -165,6 +166,7 @@
     <ClCompile Include="VectorMemoryStream.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CompressOutputStreamDecorator.h" />
     <ClInclude Include="DecompressInputStreamDecorator.h" />
     <ClInclude Include="CryptInputStreamDecorator.h" />
     <ClInclude Include="DecryptInputStreamDecorator.h" />
