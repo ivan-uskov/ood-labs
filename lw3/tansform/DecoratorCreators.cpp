@@ -4,6 +4,7 @@
 #include "../streams/DecryptInputStreamDecorator.h"
 #include "../streams/EncryptInputStreamDecorator.h"
 #include "../streams/DecompressInputStreamDecorator.h"
+#include "../streams/CompressOutputStreamDecorator.h"
 
 #include <boost/lexical_cast.hpp>
 
@@ -131,7 +132,7 @@ namespace DecoratorCreators
         }
     }
 
-    unique_ptr<IInputDataStream> Decorate(vector<string> args, unique_ptr<IInputDataStream> && stream)
+    unique_ptr<IInputDataStream> DecorateInputStream(vector<string> args, unique_ptr<IInputDataStream> && stream)
     {
         auto decoratorCreators = CreateDecoratorCreators();
 
@@ -150,6 +151,19 @@ namespace DecoratorCreators
         }
 
         CheckDecoratorCreatorsValid(decoratorCreators);
+
+        return move(stream);
+    }
+
+    unique_ptr<IOutputDataStream> DecorateOutputStream(vector<string> args, unique_ptr<IOutputDataStream> && stream)
+    {
+        for (auto currArg = args.begin(); currArg != args.end(); ++currArg)
+        {
+            if (*currArg == "--compress")
+            {
+                stream = make_unique<CCompressOutputStreamDecorator>(move(stream));
+            }
+        }
 
         return move(stream);
     }

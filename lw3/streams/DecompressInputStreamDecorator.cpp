@@ -39,7 +39,7 @@ void CDecompressInputStreamDecorator::UpdateBuffer(std::streamsize size)
     while (m_buffer.size() < static_cast<size_t>(size))
     {
         Chunk chunk;
-        m_baseStream->ReadBlock(reinterpret_cast<void*>(&chunk), 2);
+        m_baseStream->ReadBlock(reinterpret_cast<uint8_t*>(&chunk), 2);
         OpenChunk(chunk);
     }
 }

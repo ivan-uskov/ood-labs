@@ -12,7 +12,8 @@ void CopyFiles(int argc, char ** argv)
     unique_ptr<IInputDataStream> inFile = make_unique<CFileInputStream>(*fileNamePtr);
 
     vector<string> args(argv + 1, fileNamePtr);
-    inFile = DecoratorCreators::Decorate(args, move(inFile));
+    inFile = DecoratorCreators::DecorateInputStream(args, move(inFile));
+    outFile = DecoratorCreators::DecorateOutputStream(args, move(outFile));
 
     while (!inFile->IsEOF())
     {

@@ -18,7 +18,7 @@ void CCompressOutputStreamDecorator::WriteByte(uint8_t data)
     {
         CreateChunk(data);
     }
-    else if (m_chunk->val == data)
+    else if (m_chunk->val == data && m_chunk->count < std::numeric_limits<uint8_t>::max())
     {
         ++m_chunk->count;
     }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../streams/IInputDataStream.h"
+#include "../streams/IOutputDataStream.h"
 
 #include <vector>
 #include <memory>
@@ -71,6 +72,7 @@ namespace DecoratorCreators
         std::unique_ptr<IInputDataStream> CreateDecorator(std::unique_ptr<IInputDataStream> && stream, size_t seed) override;
     };
 
-    std::unique_ptr<IInputDataStream> Decorate(std::vector<std::string> args, std::unique_ptr<IInputDataStream> && stream);
+    std::unique_ptr<IInputDataStream> DecorateInputStream(std::vector<std::string> args, std::unique_ptr<IInputDataStream> && stream);
+    std::unique_ptr<IOutputDataStream> DecorateOutputStream(std::vector<std::string> args, std::unique_ptr<IOutputDataStream> && stream);
 }
 
