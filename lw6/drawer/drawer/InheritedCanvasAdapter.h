@@ -4,7 +4,7 @@
 
 class InheritedCanvasAdapter
     : public graphics_lib::ICanvas
-    , protected modern_graphics_lib::CModernGraphicsRenderer
+    , private modern_graphics_lib::CModernGraphicsRenderer
 {
 public:
     InheritedCanvasAdapter(std::ostream & strm);
