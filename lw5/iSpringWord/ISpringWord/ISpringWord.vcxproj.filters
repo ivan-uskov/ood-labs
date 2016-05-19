@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\command">
+      <UniqueIdentifier>{a0795340-dfca-484e-a043-6d0e950cc40a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\command">
+      <UniqueIdentifier>{efe0c771-849f-4d27-9dc3-4aa7188444b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\document">
+      <UniqueIdentifier>{4a577bf5-356d-4344-9dff-e6e35f87bf33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\document">
+      <UniqueIdentifier>{508fff48-682f-4325-8261-c85a3124e8ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\document_item">
+      <UniqueIdentifier>{f731a221-614b-4e1f-a6b4-633326916767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\document_item">
+      <UniqueIdentifier>{be9f9f3d-da53-48ff-9df6-8eafb316cf97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\image">
+      <UniqueIdentifier>{e457f576-2c8c-4ae7-94e8-93c807c750c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\paragraph">
+      <UniqueIdentifier>{0e8d9a22-b9a8-4a98-a84c-3710dca67fcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\paragraph">
+      <UniqueIdentifier>{436de668-ca75-460e-8391-515ce8a14109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\image">
+      <UniqueIdentifier>{3450c229-e960-4972-832c-60bbe19c2d99}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="History.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractCommand.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangeStringCommand.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="Document.h">
+      <Filter>Header Files\document</Filter>
+    </ClInclude>
+    <ClInclude Include="IDocument.h">
+      <Filter>Header Files\document</Filter>
+    </ClInclude>
+    <ClInclude Include="DocumentImpl.h">
+      <Filter>Header Files\document</Filter>
+    </ClInclude>
+    <ClInclude Include="ICommand.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="ICommand_fwd.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstDocumentItem.h">
+      <Filter>Header Files\document_item</Filter>
+    </ClInclude>
+    <ClInclude Include="DocumentItem.h">
+      <Filter>Header Files\document_item</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Header Files\image</Filter>
+    </ClInclude>
+    <ClInclude Include="IImage.h">
+      <Filter>Header Files\image</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageImpl.h">
+      <Filter>Header Files\image</Filter>
+    </ClInclude>
+    <ClInclude Include="IParagraph.h">
+      <Filter>Header Files\paragraph</Filter>
+    </ClInclude>
+    <ClInclude Include="Paragraph.h">
+      <Filter>Header Files\paragraph</Filter>
+    </ClInclude>
+    <ClInclude Include="ParagraphImpl.h">
+      <Filter>Header Files\paragraph</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ISpringWord.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="History.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractCommand.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangeStringCommand.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="DocumentImpl.cpp">
+      <Filter>Source Files\document</Filter>
+    </ClCompile>
+    <ClCompile Include="Document.cpp">
+      <Filter>Source Files\document</Filter>
+    </ClCompile>
+    <ClCompile Include="DocumentItem.cpp">
+      <Filter>Source Files\document_item</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstDocumentItem.cpp">
+      <Filter>Source Files\document_item</Filter>
+    </ClCompile>
+    <ClCompile Include="Paragraph.cpp">
+      <Filter>Source Files\paragraph</Filter>
+    </ClCompile>
+    <ClCompile Include="ParagraphImpl.cpp">
+      <Filter>Source Files\paragraph</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Source Files\image</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageImpl.cpp">
+      <Filter>Source Files\image</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
