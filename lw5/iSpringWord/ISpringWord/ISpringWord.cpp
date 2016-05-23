@@ -1,21 +1,67 @@
 ﻿#include "stdafx.h"
 #include "Menu.h"
 #include "Document.h"
+#include "TextUtils.h"
 
 using namespace std;
 using namespace std::placeholders;
 
 namespace
 {
+    auto ReadInsertionPosition(istream & in)
+    {
+        boost::optional<size_t> position;
+        string positionText;
+        in >> positionText;
+
+        if (positionText != "end")
+        {
+            position = size_t();
+            if (!TextUtils::convertString(positionText, position.get()))
+            {
+                throw invalid_argument("Invalid position specified");
+            }
+        }
+
+        return position;
+    }
+
+    auto ReadTextWithOutFirstSpaces(istream & in)
+    {
+        string head;
+        string tail;
+
+        if (in >> head)
+        {
+            getline(in, tail);
+        }
+
+        return head + tail;
+    }
+
+    void DoExceptionSafely(function<void()> && func)
+    {
+        try
+        {
+            func();
+        }
+        catch (exception const& e)
+        {
+            cout << e.what() << endl;
+        }
+    }
+
     class CEditor
     {
     public:
-        CEditor()  //-V730
-            :m_document(make_unique<CDocument>())
+        CEditor()
+            : m_document(make_unique<CDocument>())
         {
             m_menu.AddItem("help", "Help", [this](istream&) { m_menu.ShowInstructions(); });
             m_menu.AddItem("exit", "Exit", [this](istream&) { m_menu.Exit(); });
             AddMenuItem("setTitle", "Changes title. Args: <new title>", &CEditor::SetTitle);
+            AddMenuItem("insertParagraph", "Inserts paragraph. Args: <position|end> <text>", &CEditor::InsertParagraph);
+            AddMenuItem("deleteItem", "Deletes item. Args: <position>", &CEditor::DeleteItem);
             AddMenuItem("list", "Show document", &CEditor::List);
             AddMenuItem("undo", "Undo command", &CEditor::Undo);
             AddMenuItem("redo", "Redo undone command", &CEditor::Redo);
@@ -37,22 +83,41 @@ namespace
         // TODO: скипнуть первый пробел элегантнее
         void SetTitle(istream & in)
         {
-            string head;
-            string tail;
-
-            if (in >> head)
-            {
-                getline(in, tail);
-            }
-            string title = head + tail;
-
+            auto title = ReadTextWithOutFirstSpaces(in);
             m_document->SetTitle(title);
+        }
+
+        void InsertParagraph(istream & in)
+        {
+            DoExceptionSafely([this, &in]() {
+                auto position = ReadInsertionPosition(in);
+                auto text = ReadTextWithOutFirstSpaces(in);
+                m_document->InsertParagraph(text, position);
+            });
+        }
+
+        void DeleteItem(istream & in)
+        {
+            DoExceptionSafely([this, &in]() {
+                auto position = ReadInsertionPosition(in);
+                if (position == boost::none)
+                {
+                    throw invalid_argument("Invalid position specified");
+                }
+
+                m_document->DeleteItem(*position);
+            });
         }
 
         void List(istream &)
         {
             cout << "-------------" << endl;
-            cout << m_document->GetTitle() << endl;
+            cout << "Title: " << m_document->GetTitle() << endl;
+
+            for (size_t i = 0; i < m_document->GetItemsCount(); ++i)
+            {
+                cout << i << " " << m_document->GetItem(i).GetDescription() << endl;
+            }
             cout << "-------------" << endl;
         }
 
@@ -83,13 +148,11 @@ namespace
         CMenu m_menu;
         unique_ptr<IDocument> m_document;
     };
-
 }
 
 int main()
 {
-    CEditor editor;
-    editor.Start();
+    (CEditor()).Start();
     return 0;
 }
 

@@ -3,10 +3,10 @@
 
 std::shared_ptr<IImage> CDocumentItem::GetImage()
 {
-    return std::shared_ptr<IImage>();
+    return nullptr;
 }
 
 std::shared_ptr<IParagraph> CDocumentItem::GetParagraph()
 {
-    return std::shared_ptr<IParagraph>();
+    return nullptr;
 }

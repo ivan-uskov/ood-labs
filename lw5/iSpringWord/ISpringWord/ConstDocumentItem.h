@@ -12,5 +12,8 @@ public:
     std::shared_ptr<const IImage> GetImage()const;
     // Возвращает указатель на константный параграф, либо nullptr, если элемент не является параграфом
     std::shared_ptr<const IParagraph> GetParagraph()const;
+
+    virtual std::string GetDescription() const;
+
     virtual ~CConstDocumentItem() = default;
 };

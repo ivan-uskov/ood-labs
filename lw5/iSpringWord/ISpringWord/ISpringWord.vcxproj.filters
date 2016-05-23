@@ -37,6 +37,15 @@
     <Filter Include="Source Files\document\document_item">
       <UniqueIdentifier>{f731a221-614b-4e1f-a6b4-633326916767}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\document\document_item\image">
+      <UniqueIdentifier>{0579e8d0-0163-4cd5-b14d-919f4d0a0d50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\document\document_item\paragraph">
+      <UniqueIdentifier>{33b3db23-4fe9-4c10-91c8-c757d482a8ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{c3980ed9-38f2-4e04-9740-761596c06ce5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -84,8 +93,23 @@
     <ClInclude Include="Menu.h">
       <Filter>Header Files\document</Filter>
     </ClInclude>
+    <ClInclude Include="ImageDocumentItem.h">
+      <Filter>Header Files\document\document_item\image</Filter>
+    </ClInclude>
+    <ClInclude Include="ParagraphDocumentItem.h">
+      <Filter>Header Files\document\document_item\paragraph</Filter>
+    </ClInclude>
     <ClInclude Include="History.h">
-      <Filter>Header Files\document</Filter>
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="TextUtils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="InsertItemCommand.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteItemCommand.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -107,20 +131,26 @@
     <ClCompile Include="ConstDocumentItem.cpp">
       <Filter>Source Files\document\document_item</Filter>
     </ClCompile>
-    <ClCompile Include="Image.cpp">
-      <Filter>Source Files\document\document_item</Filter>
-    </ClCompile>
-    <ClCompile Include="Paragraph.cpp">
-      <Filter>Source Files\document\document_item</Filter>
-    </ClCompile>
     <ClCompile Include="Document.cpp">
-      <Filter>Source Files\document</Filter>
-    </ClCompile>
-    <ClCompile Include="History.cpp">
       <Filter>Source Files\document</Filter>
     </ClCompile>
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files\document</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Source Files\document\document_item\image</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageDocumentItem.cpp">
+      <Filter>Source Files\document\document_item\image</Filter>
+    </ClCompile>
+    <ClCompile Include="Paragraph.cpp">
+      <Filter>Source Files\document\document_item\paragraph</Filter>
+    </ClCompile>
+    <ClCompile Include="History.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="ParagraphDocumentItem.cpp">
+      <Filter>Source Files\document\document_item\paragraph</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
