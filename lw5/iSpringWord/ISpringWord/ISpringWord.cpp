@@ -7,7 +7,6 @@ using namespace std::placeholders;
 
 namespace
 {
-
     class CEditor
     {
     public:
@@ -17,7 +16,7 @@ namespace
             m_menu.AddItem("help", "Help", [this](istream&) { m_menu.ShowInstructions(); });
             m_menu.AddItem("exit", "Exit", [this](istream&) { m_menu.Exit(); });
             AddMenuItem("setTitle", "Changes title. Args: <new title>", &CEditor::SetTitle);
-            m_menu.AddItem("list", "Show document", bind(&CEditor::List, this, _1));
+            AddMenuItem("list", "Show document", &CEditor::List);
             AddMenuItem("undo", "Undo command", &CEditor::Undo);
             AddMenuItem("redo", "Redo undone command", &CEditor::Redo);
         }
@@ -28,7 +27,6 @@ namespace
         }
 
     private:
-        // Указатель на метод класса CEditor, принимающий istream& и возвращающий void
         typedef void (CEditor::*MenuHandler)(istream & in);
 
         void AddMenuItem(const string & shortcut, const string & description, MenuHandler handler)

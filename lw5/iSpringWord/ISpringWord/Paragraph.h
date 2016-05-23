@@ -4,7 +4,7 @@
 
 class CParagraphImpl;
 
-class CParagraph : public IParagraph
+class CParagraph:public IParagraph
 {
 public:
 

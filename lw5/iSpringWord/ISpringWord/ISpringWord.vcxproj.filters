@@ -22,26 +22,20 @@
     <Filter Include="Header Files\document">
       <UniqueIdentifier>{4a577bf5-356d-4344-9dff-e6e35f87bf33}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\document">
-      <UniqueIdentifier>{508fff48-682f-4325-8261-c85a3124e8ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\document_item">
-      <UniqueIdentifier>{f731a221-614b-4e1f-a6b4-633326916767}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\document_item">
+    <Filter Include="Header Files\document\document_item">
       <UniqueIdentifier>{be9f9f3d-da53-48ff-9df6-8eafb316cf97}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\image">
-      <UniqueIdentifier>{e457f576-2c8c-4ae7-94e8-93c807c750c1}</UniqueIdentifier>
+    <Filter Include="Header Files\document\document_item\image">
+      <UniqueIdentifier>{2e32f554-adc1-4d1f-994d-b94c2ad333f5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\paragraph">
-      <UniqueIdentifier>{0e8d9a22-b9a8-4a98-a84c-3710dca67fcc}</UniqueIdentifier>
+    <Filter Include="Header Files\document\document_item\paragraph">
+      <UniqueIdentifier>{1f5ab462-b496-46f9-ad20-be219f7fdde8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\paragraph">
-      <UniqueIdentifier>{436de668-ca75-460e-8391-515ce8a14109}</UniqueIdentifier>
+    <Filter Include="Source Files\document">
+      <UniqueIdentifier>{084bdfdb-24b4-4caa-bb82-e60912ba1b6d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\image">
-      <UniqueIdentifier>{3450c229-e960-4972-832c-60bbe19c2d99}</UniqueIdentifier>
+    <Filter Include="Source Files\document\document_item">
+      <UniqueIdentifier>{f731a221-614b-4e1f-a6b4-633326916767}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -49,12 +43,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="History.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AbstractCommand.h">
@@ -69,9 +57,6 @@
     <ClInclude Include="IDocument.h">
       <Filter>Header Files\document</Filter>
     </ClInclude>
-    <ClInclude Include="DocumentImpl.h">
-      <Filter>Header Files\document</Filter>
-    </ClInclude>
     <ClInclude Include="ICommand.h">
       <Filter>Header Files\command</Filter>
     </ClInclude>
@@ -79,28 +64,28 @@
       <Filter>Header Files\command</Filter>
     </ClInclude>
     <ClInclude Include="ConstDocumentItem.h">
-      <Filter>Header Files\document_item</Filter>
+      <Filter>Header Files\document\document_item</Filter>
     </ClInclude>
     <ClInclude Include="DocumentItem.h">
-      <Filter>Header Files\document_item</Filter>
-    </ClInclude>
-    <ClInclude Include="Image.h">
-      <Filter>Header Files\image</Filter>
+      <Filter>Header Files\document\document_item</Filter>
     </ClInclude>
     <ClInclude Include="IImage.h">
-      <Filter>Header Files\image</Filter>
+      <Filter>Header Files\document\document_item\image</Filter>
     </ClInclude>
-    <ClInclude Include="ImageImpl.h">
-      <Filter>Header Files\image</Filter>
+    <ClInclude Include="Image.h">
+      <Filter>Header Files\document\document_item\image</Filter>
     </ClInclude>
     <ClInclude Include="IParagraph.h">
-      <Filter>Header Files\paragraph</Filter>
+      <Filter>Header Files\document\document_item\paragraph</Filter>
     </ClInclude>
     <ClInclude Include="Paragraph.h">
-      <Filter>Header Files\paragraph</Filter>
+      <Filter>Header Files\document\document_item\paragraph</Filter>
     </ClInclude>
-    <ClInclude Include="ParagraphImpl.h">
-      <Filter>Header Files\paragraph</Filter>
+    <ClInclude Include="Menu.h">
+      <Filter>Header Files\document</Filter>
+    </ClInclude>
+    <ClInclude Include="History.h">
+      <Filter>Header Files\document</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -110,41 +95,32 @@
     <ClCompile Include="ISpringWord.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="History.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AbstractCommand.cpp">
       <Filter>Source Files\command</Filter>
     </ClCompile>
     <ClCompile Include="ChangeStringCommand.cpp">
       <Filter>Source Files\command</Filter>
     </ClCompile>
-    <ClCompile Include="DocumentImpl.cpp">
-      <Filter>Source Files\document</Filter>
+    <ClCompile Include="DocumentItem.cpp">
+      <Filter>Source Files\document\document_item</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstDocumentItem.cpp">
+      <Filter>Source Files\document\document_item</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Source Files\document\document_item</Filter>
+    </ClCompile>
+    <ClCompile Include="Paragraph.cpp">
+      <Filter>Source Files\document\document_item</Filter>
     </ClCompile>
     <ClCompile Include="Document.cpp">
       <Filter>Source Files\document</Filter>
     </ClCompile>
-    <ClCompile Include="DocumentItem.cpp">
-      <Filter>Source Files\document_item</Filter>
+    <ClCompile Include="History.cpp">
+      <Filter>Source Files\document</Filter>
     </ClCompile>
-    <ClCompile Include="ConstDocumentItem.cpp">
-      <Filter>Source Files\document_item</Filter>
-    </ClCompile>
-    <ClCompile Include="Paragraph.cpp">
-      <Filter>Source Files\paragraph</Filter>
-    </ClCompile>
-    <ClCompile Include="ParagraphImpl.cpp">
-      <Filter>Source Files\paragraph</Filter>
-    </ClCompile>
-    <ClCompile Include="Image.cpp">
-      <Filter>Source Files\image</Filter>
-    </ClCompile>
-    <ClCompile Include="ImageImpl.cpp">
-      <Filter>Source Files\image</Filter>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\document</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
