@@ -46,6 +46,9 @@
     <Filter Include="Header Files\utils">
       <UniqueIdentifier>{c3980ed9-38f2-4e04-9740-761596c06ce5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{fc91ecd0-d893-49f8-aabd-4c15c6817d81}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -111,6 +114,9 @@
     <ClInclude Include="DeleteItemCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FileUtils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -151,6 +157,9 @@
     </ClCompile>
     <ClCompile Include="ParagraphDocumentItem.cpp">
       <Filter>Source Files\document\document_item\paragraph</Filter>
+    </ClCompile>
+    <ClCompile Include="FileUtils.cpp">
+      <Filter>Source Files\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -11,6 +11,7 @@ public:
     std::string GetTitle() const override;
 
     std::shared_ptr<IParagraph> InsertParagraph(const std::string & text, boost::optional<size_t> position = boost::none) override;
+    std::shared_ptr<IImage> InsertImage(const std::string & path, size_t width, size_t height, boost::optional<size_t> position = boost::none) override;
 
     size_t GetItemsCount()const override;
     void DeleteItem(size_t index) override;
@@ -24,6 +25,8 @@ public:
     void Redo() override;
 
 private:
+    void verifyInsertionPosition(boost::optional<size_t> const& position) const;
+
     std::deque<std::shared_ptr<CDocumentItem>> m_items;
     std::string m_title;
     CHistory m_history;

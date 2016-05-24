@@ -4,20 +4,28 @@
 #include "InsertItemCommand.h"
 #include "DeleteItemCommand.h"
 #include "ParagraphDocumentItem.h"
+#include "ImageDocumentItem.h"
 
 using namespace std;
 
+shared_ptr<IImage> CDocument::InsertImage(const string & path, size_t width, size_t height, boost::optional<size_t> position)
+{
+    verifyInsertionPosition(position);
+
+    m_history.AddAndExecuteCommand(
+        make_unique<CInsertItemCommand<decltype(m_items)>>(
+            m_items,
+            make_shared<CImageDocumentItem>(path, width, height),
+            position
+        )
+    );
+
+    return m_items[position ? *position : m_items.size() - 1]->GetImage();
+}
+
 shared_ptr<IParagraph> CDocument::InsertParagraph(const string & text, boost::optional<size_t> position)
 {
-    if (position != boost::none && *position >= GetItemsCount())
-    {
-        throw invalid_argument("Invalid position specified");
-    }
-
-    if (text.empty())
-    {
-        throw invalid_argument("Text is empty");
-    }
+    verifyInsertionPosition(position);
 
     m_history.AddAndExecuteCommand(
         make_unique<CInsertItemCommand<decltype(m_items)>>(
@@ -95,4 +103,12 @@ bool CDocument::CanRedo() const
 void CDocument::Redo()
 {
     m_history.Redo();
+}
+
+void CDocument::verifyInsertionPosition(boost::optional<size_t> const& position) const
+{
+    if (position != boost::none && *position >= GetItemsCount())
+    {
+        throw invalid_argument("Invalid position specified");
+    }
 }

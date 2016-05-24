@@ -19,8 +19,7 @@ public:
     //// ѕараметр path задает путь к вставл€емому изображению
     //// ѕри вставке изображение должно копироватьс€ в подкаталог images 
     //// под автоматически сгенерированным именем
-    //virtual std::shared_ptr<IImage> InsertImage(const std::string& path, int width, int height,
-    //boost::optional<size_t> position = boost::none) = 0;
+    virtual std::shared_ptr<IImage> InsertImage(const std::string & path, size_t width, size_t height, boost::optional<size_t> position = boost::none) = 0;
 
     //// ¬озвращает количество элементов в документе
     virtual size_t GetItemsCount()const = 0;

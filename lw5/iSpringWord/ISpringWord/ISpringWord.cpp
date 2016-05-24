@@ -26,6 +26,18 @@ namespace
         return position;
     }
 
+    size_t ReadNumber(istream & in, string const& errorMsg)
+    {
+        size_t number;
+
+        if (!(in >> number))
+        {
+            throw invalid_argument(errorMsg);
+        }
+
+        return number;
+    }
+
     auto ReadTextWithOutFirstSpaces(istream & in)
     {
         string head;
@@ -61,7 +73,7 @@ namespace
             m_menu.AddItem("exit", "Exit", [this](istream&) { m_menu.Exit(); });
             AddMenuItem("setTitle", "Changes title. Args: <new title>", &CEditor::SetTitle);
             AddMenuItem("insertParagraph", "Inserts paragraph. Args: <position|end> <text>", &CEditor::InsertParagraph);
-            AddMenuItem("deleteItem", "Deletes item. Args: <position>", &CEditor::DeleteItem);
+            AddMenuItem("insertImage", "Inserts image. Args: <position|end> <width> <height> <path>", &CEditor::InsertImage);
             AddMenuItem("list", "Show document", &CEditor::List);
             AddMenuItem("undo", "Undo command", &CEditor::Undo);
             AddMenuItem("redo", "Redo undone command", &CEditor::Redo);
@@ -93,6 +105,17 @@ namespace
                 auto position = ReadInsertionPosition(in);
                 auto text = ReadTextWithOutFirstSpaces(in);
                 m_document->InsertParagraph(text, position);
+            });
+        }
+
+        void InsertImage(istream & in)
+        {
+            DoExceptionSafely([this, &in]() {
+                auto position = ReadInsertionPosition(in);
+                auto width = ReadNumber(in, "Invalid width specified");
+                auto height = ReadNumber(in, "Invalid height specified");
+                auto path = ReadTextWithOutFirstSpaces(in);
+                m_document->InsertImage(path, width, height, position);
             });
         }
 
