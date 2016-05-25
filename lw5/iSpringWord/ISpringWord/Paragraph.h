@@ -1,6 +1,6 @@
 #pragma once
 #include "IParagraph.h"
-#include "DocumentItem.h"
+#include "IDocumentItem.h"
 
 class CParagraph : public IParagraph
 {

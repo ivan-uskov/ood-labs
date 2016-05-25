@@ -2,7 +2,8 @@
 
 namespace FileUtils
 {
-    bool CopyFile(std::string const& from, std::string const& to);
-    bool FileExists(std::string const& path);
-    std::string GenerateUniqueFileName(std::string const& oldName);
+    void CopyFile(const std::string & from, const std::string & to);
+    void CreateDirReqursively(const std::string & path);
+    bool Exists(const std::string & path);
+    std::string GenerateUniqueFileName(const std::string & oldName);
 }

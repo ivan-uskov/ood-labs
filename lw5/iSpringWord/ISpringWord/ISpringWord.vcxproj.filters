@@ -49,6 +49,12 @@
     <Filter Include="Source Files\utils">
       <UniqueIdentifier>{fc91ecd0-d893-49f8-aabd-4c15c6817d81}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\document\export">
+      <UniqueIdentifier>{4d1bfc8d-1f4a-4edb-a20c-cc1bdd78e761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\document\export">
+      <UniqueIdentifier>{d6a4c31b-cf3a-4c4f-a55c-6698df2e72a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -74,12 +80,6 @@
     </ClInclude>
     <ClInclude Include="ICommand_fwd.h">
       <Filter>Header Files\command</Filter>
-    </ClInclude>
-    <ClInclude Include="ConstDocumentItem.h">
-      <Filter>Header Files\document\document_item</Filter>
-    </ClInclude>
-    <ClInclude Include="DocumentItem.h">
-      <Filter>Header Files\document\document_item</Filter>
     </ClInclude>
     <ClInclude Include="IImage.h">
       <Filter>Header Files\document\document_item\image</Filter>
@@ -111,11 +111,23 @@
     <ClInclude Include="InsertItemCommand.h">
       <Filter>Header Files\command</Filter>
     </ClInclude>
-    <ClInclude Include="DeleteItemCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FileUtils.h">
       <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteItemCommand.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="IDocumentExporter.h">
+      <Filter>Header Files\document\export</Filter>
+    </ClInclude>
+    <ClInclude Include="IDocumentItem.h">
+      <Filter>Header Files\document\document_item</Filter>
+    </ClInclude>
+    <ClInclude Include="DocumentHTMLExporter.h">
+      <Filter>Header Files\document\export</Filter>
+    </ClInclude>
+    <ClInclude Include="IDocumentExportVisitor.h">
+      <Filter>Header Files\document\export</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -130,12 +142,6 @@
     </ClCompile>
     <ClCompile Include="ChangeStringCommand.cpp">
       <Filter>Source Files\command</Filter>
-    </ClCompile>
-    <ClCompile Include="DocumentItem.cpp">
-      <Filter>Source Files\document\document_item</Filter>
-    </ClCompile>
-    <ClCompile Include="ConstDocumentItem.cpp">
-      <Filter>Source Files\document\document_item</Filter>
     </ClCompile>
     <ClCompile Include="Document.cpp">
       <Filter>Source Files\document</Filter>
@@ -160,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="FileUtils.cpp">
       <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="DocumentHTMLExporter.cpp">
+      <Filter>Source Files\document\export</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

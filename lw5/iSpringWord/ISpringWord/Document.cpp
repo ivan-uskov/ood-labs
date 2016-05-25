@@ -8,7 +8,7 @@
 
 using namespace std;
 
-shared_ptr<IImage> CDocument::InsertImage(const string & path, size_t width, size_t height, boost::optional<size_t> position)
+void CDocument::InsertImage(const string & path, size_t width, size_t height, boost::optional<size_t> position)
 {
     verifyInsertionPosition(position);
 
@@ -19,11 +19,9 @@ shared_ptr<IImage> CDocument::InsertImage(const string & path, size_t width, siz
             position
         )
     );
-
-    return m_items[position ? *position : m_items.size() - 1]->GetImage();
 }
 
-shared_ptr<IParagraph> CDocument::InsertParagraph(const string & text, boost::optional<size_t> position)
+void CDocument::InsertParagraph(const string & text, boost::optional<size_t> position)
 {
     verifyInsertionPosition(position);
 
@@ -34,8 +32,6 @@ shared_ptr<IParagraph> CDocument::InsertParagraph(const string & text, boost::op
             position
         )
     );
-
-    return m_items[position ? *position : m_items.size() - 1]->GetParagraph();
 }
 
 void CDocument::DeleteItem(size_t index)
@@ -55,7 +51,7 @@ size_t CDocument::GetItemsCount() const
     return m_items.size();
 }
 
-CConstDocumentItem const& CDocument::GetItem(size_t index) const
+IDocumentItem const& CDocument::GetItem(size_t index) const
 {
     if (index >= m_items.size())
     {
@@ -65,7 +61,7 @@ CConstDocumentItem const& CDocument::GetItem(size_t index) const
     return *m_items[index];
 }
 
-CDocumentItem & CDocument::GetItem(size_t index)
+IDocumentItem & CDocument::GetItem(size_t index)
 {
     if (index >= m_items.size())
     {

@@ -1,7 +1,7 @@
 #pragma once
 #include "IDocument.h"
 #include "History.h"
-#include "DocumentItem.h"
+#include "IDocumentItem.h"
 
 class CDocument : public IDocument
 {
@@ -10,14 +10,14 @@ public:
     void SetTitle(const std::string & title) override;
     std::string GetTitle() const override;
 
-    std::shared_ptr<IParagraph> InsertParagraph(const std::string & text, boost::optional<size_t> position = boost::none) override;
-    std::shared_ptr<IImage> InsertImage(const std::string & path, size_t width, size_t height, boost::optional<size_t> position = boost::none) override;
+    void InsertParagraph(const std::string & text, boost::optional<size_t> position = boost::none) override;
+    void InsertImage(const std::string & path, size_t width, size_t height, boost::optional<size_t> position = boost::none) override;
 
     size_t GetItemsCount()const override;
     void DeleteItem(size_t index) override;
 
-    CConstDocumentItem const& GetItem(size_t index)const override;
-    CDocumentItem & GetItem(size_t index) override;
+    IDocumentItem const& GetItem(size_t index)const override;
+    IDocumentItem & GetItem(size_t index) override;
 
     bool CanUndo() const override;
     void Undo() override;
@@ -27,7 +27,7 @@ public:
 private:
     void verifyInsertionPosition(boost::optional<size_t> const& position) const;
 
-    std::deque<std::shared_ptr<CDocumentItem>> m_items;
+    std::deque<std::shared_ptr<IDocumentItem>> m_items;
     std::string m_title;
     CHistory m_history;
 };

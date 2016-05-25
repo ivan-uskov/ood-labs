@@ -4,32 +4,43 @@
 
 using namespace std;
 
-CImageDocumentItem::CImageDocumentItem(const std::string & path, size_t width, size_t height)
+CImageDocumentItem::CImageDocumentItem(const string & path, size_t width, size_t height)
 {
     m_image.Resize(width, height);
     auto imagePath = CopyToImagesDirectory(path);
     m_image = CImage(imagePath, width, height);
 }
 
-std::string CImageDocumentItem::GetDescription() const
+string CImageDocumentItem::GetDescription() const
 {
     return "Image: " + to_string(m_image.GetWidth()) + " " + to_string(m_image.GetHeight()) + " " + m_image.GetPath();
 }
 
-std::string CImageDocumentItem::CopyToImagesDirectory(const std::string & path) const
+void CImageDocumentItem::acceptExporter(IDocumentExportVisitor & visitor) const
 {
-    if (!FileUtils::FileExists(path))
+    visitor.AddImage(m_image);
+}
+
+string CImageDocumentItem::CopyToImagesDirectory(const string & path) const
+{
+    if (!FileUtils::Exists(path))
     {
         throw invalid_argument("Image not exists");
     }
-    auto copyDir = "images";
 
-    auto copyPath = copyDir + string("/") + FileUtils::GenerateUniqueFileName(path);
-
-    if (!FileUtils::CopyFile(path, copyPath))
-    {
-        throw runtime_error("Failed to make file copy");
-    }
+    auto copyPath = PrepareImageCopyPath(path);
+    FileUtils::CopyFile(path, copyPath);
 
     return copyPath;
+}
+
+string CImageDocumentItem::PrepareImageCopyPath(const string & oldPath) const
+{
+    auto copyDir = "images";
+    if (!FileUtils::Exists(copyDir))
+    {
+        FileUtils::CreateDirReqursively(copyDir);
+    }
+
+    return copyDir + string("/") + FileUtils::GenerateUniqueFileName(oldPath);
 }

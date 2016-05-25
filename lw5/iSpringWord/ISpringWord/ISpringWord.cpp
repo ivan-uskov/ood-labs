@@ -1,6 +1,7 @@
 ﻿#include "stdafx.h"
 #include "Menu.h"
 #include "Document.h"
+#include "DocumentHTMLExporter.h"
 #include "TextUtils.h"
 
 using namespace std;
@@ -77,6 +78,7 @@ namespace
             AddMenuItem("list", "Show document", &CEditor::List);
             AddMenuItem("undo", "Undo command", &CEditor::Undo);
             AddMenuItem("redo", "Redo undone command", &CEditor::Redo);
+            AddMenuItem("save", "Save as html. Args: <fileName>", &CEditor::Save);
         }
 
         void Start()
@@ -165,6 +167,22 @@ namespace
             else
             {
                 cout << "Can't redo" << endl;
+            }
+        }
+
+        void Save(istream & in)
+        {
+            auto fileName = ReadTextWithOutFirstSpaces(in);
+            ofstream out(fileName, ofstream::out);
+
+            if (out.is_open())
+            {
+                (CDocumentHTMLExporter(*m_document, out)).Generate();
+                out.close();
+            }
+            else
+            {
+                cout << "Failed to open file" << endl;
             }
         }
 

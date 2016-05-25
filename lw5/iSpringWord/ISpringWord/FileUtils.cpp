@@ -9,28 +9,39 @@ using namespace boost::filesystem;
 
 namespace FileUtils
 {
-    bool CopyFile(std::string const& from, std::string const& to)
+    void CopyFile(const string & from, const string & to)
     {
         try
         {
             copy(from, to);
-            return true;
         }
-        catch (filesystem_error const&)
+        catch (const filesystem_error &)
         {
-            return false;
+            throw runtime_error("Failed to make file copy");
         }
     }
 
-    bool FileExists(std::string const& path)
+    void CreateDirReqursively(const string & dirPath)
+    {
+        try
+        {
+            create_directories(path(dirPath));
+        }
+        catch (const filesystem_error &)
+        {
+            throw runtime_error("Failed to make file copy");
+        }
+    }
+
+    bool Exists(string const& path)
     {
         return exists(path);
     }
 
-    std::string GenerateUniqueFileName(std::string const& oldName)
+    string GenerateUniqueFileName(const string & oldName)
     {
         auto extension = boost::filesystem::extension(oldName);
         auto timestamp = (system_clock::now()).time_since_epoch();
-        return to_string(duration_cast<milliseconds>(timestamp).count()) + "." + extension;
+        return to_string(duration_cast<milliseconds>(timestamp).count()) + extension;
     }
 }

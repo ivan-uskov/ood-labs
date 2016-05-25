@@ -11,3 +11,8 @@ std::string CParagraphDocumentItem::GetDescription() const
 {
     return "Paragraph: " + m_paragraph.GetText();
 }
+
+void CParagraphDocumentItem::acceptExporter(IDocumentExportVisitor & visitor) const
+{
+    visitor.AddParagraph(m_paragraph);
+}

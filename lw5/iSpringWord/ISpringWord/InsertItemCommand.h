@@ -1,6 +1,6 @@
 #pragma once
 #include "AbstractCommand.h"
-#include "DocumentItem.h"
+#include "IDocumentItem.h"
 #include <boost/optional.hpp>
 
 template <typename RandomAccessCollection>
