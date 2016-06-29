@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Support Files">
+      <UniqueIdentifier>{ba73d31c-980c-4e12-9d5c-c88efdd5c0d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="factory">
+      <UniqueIdentifier>{4d4e2f66-bda5-46bc-866e-c4429ce52d1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="canvas">
+      <UniqueIdentifier>{d02c0c03-4e99-4878-ad5a-49328e73c38f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="designer">
+      <UniqueIdentifier>{d591d95e-293c-4bc6-8cd5-30add364bdd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shapes">
+      <UniqueIdentifier>{44d427e4-3d63-49c0-80bf-3b9ff9dfc07d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="visitor">
+      <UniqueIdentifier>{872d8cff-55de-41f8-a9cb-44f2bd91d65e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Support Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Support Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Designer.h">
+      <Filter>designer</Filter>
+    </ClInclude>
+    <ClInclude Include="PictureDraft.h">
+      <Filter>shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Ellipse.h">
+      <Filter>shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="RegularPolygon.h">
+      <Filter>shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="IShapeFactory.h">
+      <Filter>factory</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeFactory.h">
+      <Filter>factory</Filter>
+    </ClInclude>
+    <ClInclude Include="ICanvas.h">
+      <Filter>canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="SvgCanvas.h">
+      <Filter>canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="IShape.h">
+      <Filter>shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="IShapeVisitor.h">
+      <Filter>visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Painter.h">
+      <Filter>visitor</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Support Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Designer.cpp">
+      <Filter>designer</Filter>
+    </ClCompile>
+    <ClCompile Include="PictureDraft.cpp">
+      <Filter>shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Ellipse.cpp">
+      <Filter>shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="RegularPolygon.cpp">
+      <Filter>shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeFactory.cpp">
+      <Filter>factory</Filter>
+    </ClCompile>
+    <ClCompile Include="SvgCanvas.cpp">
+      <Filter>canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="Painter.cpp">
+      <Filter>visitor</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

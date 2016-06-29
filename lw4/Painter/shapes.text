@@ -1,0 +1,4 @@
+Rectangle Red 5 5 20 20
+Triangle Green 25 25 35 10 40 40
+Ellipse Blue 10 30 5 8
+RegularPolygon Black 100 100 50 6
