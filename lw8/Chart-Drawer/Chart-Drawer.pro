@@ -36,7 +36,8 @@ HEADERS  += mainwindow.h \
             model/iharmonic.h \
     utils/math.h \
     utils/range.h \
-    model/harmonicplotitemsprovider.h
+    model/harmonicplotitemsprovider.h \
+    model/idecartesspacedrawable.h
 
 FORMS    += mainwindow.ui \
             dialog/insertharmonicdialog.ui

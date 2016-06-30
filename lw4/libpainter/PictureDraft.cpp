@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "PictureDraft.h"
-#include <boost/algorithm/algorithm.hpp>
 
 using namespace std;
 

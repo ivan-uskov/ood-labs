@@ -13,24 +13,25 @@ struct HarmonicItems
     double deltha;
 };
 
-class IHarmonic;
+class IDecartesSpaceDrawable;
 
 class HarmonicPlotItemsProvider : public QObject
 {
     Q_OBJECT
 public:
-    typedef std::shared_ptr<IHarmonic> Generator;
+    typedef std::shared_ptr<IDecartesSpaceDrawable> Generator;
 
     HarmonicPlotItemsProvider(Math::Range const& xValues, double deltha);
 
     void setGenerator(Generator const& generator);
 
+public slots:
+    void regenerate();
+
 signals:
     void regenerated(const HarmonicItems &);
 
 private:
-    void regenerate();
-
     Generator m_generator;
     HarmonicItems m_items;
 };

@@ -26,6 +26,13 @@ QVariant HarmonicCollection::data(const QModelIndex &index, int role) const
     }
 }
 
+double HarmonicCollection::operator () (double x) const
+{
+    return accumulate(m_harmonics.begin(), m_harmonics.end(), 0.0, [x](double acc, const std::shared_ptr<IHarmonic> & item){
+        return acc + (*item)(x);
+    });
+}
+
 void HarmonicCollection::addHarmonic(const shared_ptr<IHarmonic> & harmonic)
 {
     emit layoutAboutToBeChanged();

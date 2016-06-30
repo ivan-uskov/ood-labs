@@ -21,9 +21,10 @@ private slots:
 
 private:
     void initializeItems();
+    void initializePlot();
 
     std::shared_ptr<HarmonicFactory> m_factory;
-    std::unique_ptr<HarmonicCollection> m_harmonics;
+    std::shared_ptr<HarmonicCollection> m_harmonics;
     std::unique_ptr<HarmonicPlotItemsProvider> m_provider;
     std::unique_ptr<Ui::MainWindow> m_ui;
     QModelIndex m_currentHarmonicIndex;

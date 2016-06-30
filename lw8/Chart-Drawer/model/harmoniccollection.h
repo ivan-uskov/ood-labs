@@ -4,13 +4,14 @@
 #include "iharmonic.h"
 #include <QAbstractListModel>
 
-class HarmonicCollection : public QAbstractListModel
+class HarmonicCollection : public QAbstractListModel, public IDecartesSpaceDrawable
 {
     Q_OBJECT
 public:
     int rowCount(const QModelIndex &parent) const override;
     QVariant data(const QModelIndex &index, int role) const override;
 
+    double operator () (double x) const override;
     std::shared_ptr<IHarmonic> getHarmonic(size_t index) const;
 
 public slots:
