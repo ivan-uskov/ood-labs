@@ -38,7 +38,9 @@ void HarmonicCollection::removeHarmonic(size_t index)
     auto it = m_harmonics.begin() + index;
     if (it < m_harmonics.end())
     {
+        emit layoutAboutToBeChanged();
         m_harmonics.erase(it);
+        emit layoutChanged();
     }
 }
 
